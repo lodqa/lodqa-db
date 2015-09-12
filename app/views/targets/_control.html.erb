@@ -1,0 +1,7 @@
+<div class="control">
+<% if user_signed_in? && @target.editable?(current_user) -%>
+  <span class='button'><%= link_to 'Edit', edit_target_path(@target) %></span>
+  <span class='button'><%= link_to 'Destroy', @target, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+<% end %>
+<span class='button'><%= link_to 'List', targets_path %></span>
+</div>

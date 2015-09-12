@@ -1,0 +1,25 @@
+<h1>List</h1>
+
+<div class='control'>
+<span class='button'><%= link_to 'New Target', new_target_path %></span>
+</div>
+
+<table>
+  <tr>
+    <th style="width:200px">Name</th>
+    <th>Description</th>
+    <th style="width:200px">User</th>
+  </tr>
+
+<% @targets.each do |target| %>
+  <tr>
+    <td><%= link_to target.name, target %></td>
+    <td><%= target.description %></td>
+    <td><%= target.user.email %></td>
+  </tr>
+<% end %>
+</table>
+
+<div class='control'>
+<span class='button'><%= link_to 'New Target', new_target_path %></span>
+</div>

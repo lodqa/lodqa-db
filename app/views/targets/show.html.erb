@@ -1,0 +1,58 @@
+<%= render partial: 'control' %>
+<table>
+<tr>
+  <th>Name:</th>
+  <td><%= @target.name %></td>
+</tr>
+
+<tr>
+  <th>Description:</th>
+  <td><%= @target.description %></td>
+</tr>
+
+<tr>
+  <th>User:</th>
+  <td><%= @target.user.email %></td>
+</tr>
+
+<tr>
+  <th>Parser url:</th>
+  <td><%= @target.parser_url %></td>
+</tr>
+
+<tr>
+  <th>Endpoint url:</th>
+  <td><%= @target.endpoint_url %></td>
+</tr>
+
+<tr>
+  <th>Graph uri:</th>
+  <td><%= @target.graph_uri %></td>
+</tr>
+
+<tr>
+  <th>Dictionary url:</th>
+  <td><%= @target.dictionary_url %></td>
+</tr>
+
+<tr>
+  <th>Max hop:</th>
+  <td><%= @target.max_hop %></td>
+</tr>
+
+<tr>
+  <th>Ignore predicates:</th>
+  <td><pre><%= @target.ignore_predicates %></pre></td>
+</tr>
+
+<tr>
+  <th>Sortal predicates:</th>
+  <td><pre><%= @target.sortal_predicates %></pre></td>
+</tr>
+
+<tr>
+  <th>Sample queries:</th>
+  <td><pre><%= @target.sample_queries %></pre></td>
+</tr>
+</table>
+<%= render partial: 'control' %>

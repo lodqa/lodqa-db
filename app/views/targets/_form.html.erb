@@ -1,0 +1,62 @@
+<%= form_for(@target) do |f| %>
+  <% if @target.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@target.errors.count, "error") %> prohibited this target from being saved:</h2>
+
+      <ul>
+      <% @target.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+  <tr>
+    <th style="width:150px"><%= f.label :name %></th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :description %></th>
+    <td><%= f.text_area :description %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :user %></th>
+    <td><%= current_user.email %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :parser_url, :value => "Parser URL" %></th>
+    <td><%= f.text_field :parser_url %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :endpoint_url %></th>
+    <td><%= f.text_field :endpoint_url %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :graph_uri %></th>
+    <td><%= f.text_field :graph_uri %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :dictionary_url %></th>
+    <td><%= f.text_field :dictionary_url %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :max_hop %></th>
+    <td><%= f.number_field :max_hop %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :ignore_predicates %></th>
+    <td><%= f.text_area :ignore_predicates %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :sortal_predicates %></th>
+    <td><%= f.text_area :sortal_predicates %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :sample_queries %></th>
+    <td><%= f.text_area :sample_queries %></td>
+  </tr>
+  </table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

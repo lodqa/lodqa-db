@@ -1,0 +1,37 @@
+// Place all the styles related to the Targets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table, th, td {
+	border-style: solid;
+	border-color: #aaaaff;
+	border-width: 1px;
+	border-collapse: collapse;
+	padding:4px;
+}
+
+th {
+	background-color: #eeeeff;
+}
+
+table {
+	width:100%;
+}
+
+td input[type=text], textarea {
+	width:100%;
+}
+
+td textarea {
+	height: 5em;
+}
+
+.control {
+	text-align: right;
+	margin: 5px 0;
+}
+
+.note {
+	color: #999999;
+	font-style: italic;
+}
