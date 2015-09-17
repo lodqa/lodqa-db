@@ -42,17 +42,35 @@
 
 <tr>
   <th>Ignore predicates:</th>
-  <td><pre><%= @target.ignore_predicates %></pre></td>
+  <td>
+    <% unless @target.ignore_predicates.empty? %>
+      <% @target.ignore_predicates.each do |p| %>
+        <li><%= p %></li>
+      <% end %>
+    <% end %>
+  </td>
 </tr>
 
 <tr>
   <th>Sortal predicates:</th>
-  <td><pre><%= @target.sortal_predicates %></pre></td>
+  <td>
+    <% unless @target.sortal_predicates.empty? %>
+      <% @target.sortal_predicates.each do |p| %>
+        <li><%= p %></li>
+      <% end %>
+    <% end %>
+  </td>
 </tr>
 
 <tr>
   <th>Sample queries:</th>
-  <td><pre><%= @target.sample_queries %></pre></td>
+  <td>
+    <% unless @target.sample_queries.empty? %>
+      <% @target.sample_queries.each do |p| %>
+        <li><%= p %></li>
+      <% end %>
+    <% end %>
+  </td>
 </tr>
 </table>
 <%= render partial: 'control' %>

@@ -16,6 +16,9 @@ class TargetsController < ApplicationController
   # GET /targets/1.json
   def show
     @target = Target.find(params[:id])
+    @target.sample_queries = @target.sample_queries.split(/[\n\r\t]+/)
+    @target.sortal_predicates = @target.sortal_predicates.split(/[\n\r\t]+/)
+    @target.ignore_predicates = @target.ignore_predicates.split(/[\n\r\t]+/)
 
     respond_to do |format|
       format.html # show.html.erb
