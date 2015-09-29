@@ -47,9 +47,14 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.6.0)
+    friendly_id (4.0.10.1)
+      activerecord (>= 3.0, < 4.0)
     hike (1.2.3)
     i18n (0.7.0)
     journey (1.0.4)
+    jquery-rails (3.1.4)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
     json (1.8.3)
     kgio (2.10.0)
     mail (2.5.4)
@@ -122,6 +127,8 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
+  friendly_id
+  jquery-rails
   rack-cors
   rails (= 3.2.17)
   sass-rails (~> 3.2.3)
