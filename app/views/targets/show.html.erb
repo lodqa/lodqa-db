@@ -1,5 +1,10 @@
 <%= render partial: 'control' %>
-<table>
+<table class='column-head'>
+<tr>
+  <th style="width:12em">Maintainer:</th>
+  <td><%= @target.user.email %></td>
+</tr>
+
 <tr>
   <th>Name:</th>
   <td><%= @target.name %></td>
@@ -11,8 +16,13 @@
 </tr>
 
 <tr>
-  <th>User:</th>
-  <td><%= @target.user.email %></td>
+  <th>Project Home:</th>
+  <td><%= @target.home %></td>
+</tr>
+
+<tr>
+  <th>List in LODQA home:</th>
+  <td><%= @target.publicity ? 'Yes' : 'No' %></td>
 </tr>
 
 <tr>
@@ -44,9 +54,9 @@
   <th>Ignore predicates:</th>
   <td>
     <% unless @target.ignore_predicates.empty? %>
-      <% @target.ignore_predicates.each do |p| %>
-        <li><%= p %></li>
-      <% end %>
+<pre>
+<%= @target.ignore_predicates.join("\n") %>
+</pre>
     <% end %>
   </td>
 </tr>
@@ -55,9 +65,9 @@
   <th>Sortal predicates:</th>
   <td>
     <% unless @target.sortal_predicates.empty? %>
-      <% @target.sortal_predicates.each do |p| %>
-        <li><%= p %></li>
-      <% end %>
+<pre>
+<%= @target.sortal_predicates.join("\n") %>
+</pre>
     <% end %>
   </td>
 </tr>
@@ -66,9 +76,9 @@
   <th>Sample queries:</th>
   <td>
     <% unless @target.sample_queries.empty? %>
-      <% @target.sample_queries.each do |p| %>
-        <li><%= p %></li>
-      <% end %>
+<pre>
+<%= @target.sample_queries.join("\n") %>
+</pre>
     <% end %>
   </td>
 </tr>

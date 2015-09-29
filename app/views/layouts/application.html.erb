@@ -7,10 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="header">
+<div id="header" class="frame">
 <div id="title">
-<img src='/assets/lodqa-logo.svg' alt="LODQA" id='logo' title="Question-Answering over Linked Open Data">
-Targets
+<a href="http://lodqa.org"><img src='/assets/lodqa-logo.svg' alt="LODQA" id='logo' title="Question-Answering over Linked Open Data"></a>
+<%= link_to 'Targets', root_path %>
 </div>
 <div id="account" class="menu">
 	<ul>
@@ -23,8 +23,8 @@ Targets
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-
+<div id="main" class="frame">
 <%= yield %>
-
+</div>
 </body>
 </html>

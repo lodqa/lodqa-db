@@ -16,9 +16,6 @@ class TargetsController < ApplicationController
   # GET /targets/1.json
   def show
     @target = Target.find(params[:id])
-    @target.sample_queries = @target.sample_queries.split(/[\n\r\t]+/)
-    @target.sortal_predicates = @target.sortal_predicates.split(/[\n\r\t]+/)
-    @target.ignore_predicates = @target.ignore_predicates.split(/[\n\r\t]+/)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,6 +27,9 @@ class TargetsController < ApplicationController
   # GET /targets/new.json
   def new
     @target = Target.new
+    @target.sample_queries = @target.sample_queries.join("\n")
+    @target.sortal_predicates = @target.sortal_predicates.join("\n")
+    @target.ignore_predicates = @target.ignore_predicates.join("\n")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,6 +40,9 @@ class TargetsController < ApplicationController
   # GET /targets/1/edit
   def edit
     @target = Target.find(params[:id])
+    @target.sample_queries = @target.sample_queries.join("\n")
+    @target.sortal_predicates = @target.sortal_predicates.join("\n")
+    @target.ignore_predicates = @target.ignore_predicates.join("\n")
   end
 
   # POST /targets
@@ -47,6 +50,9 @@ class TargetsController < ApplicationController
   def create
     @target = Target.new(params[:target])
     @target.user = current_user
+    @target.sample_queries = @target.sample_queries.split(/[\n\r\t]+/)
+    @target.sortal_predicates = @target.sortal_predicates.split(/[\n\r\t]+/)
+    @target.ignore_predicates = @target.ignore_predicates.split(/[\n\r\t]+/)
 
     respond_to do |format|
       if @target.save
@@ -63,9 +69,13 @@ class TargetsController < ApplicationController
   # PUT /targets/1.json
   def update
     @target = Target.find(params[:id])
+    update = params[:target]
+    update["sample_queries"] = update["sample_queries"].split(/[\n\r\t]+/)
+    update["sortal_predicates"] = update["sortal_predicates"].split(/[\n\r\t]+/)
+    update["ignore_predicates"] = update["ignore_predicates"].split(/[\n\r\t]+/)
 
     respond_to do |format|
-      if @target.update_attributes(params[:target])
+      if @target.update_attributes(update)
         format.html { redirect_to @target, notice: 'Target was successfully updated.' }
         format.json { head :no_content }
       else

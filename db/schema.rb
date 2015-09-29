@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150906124211) do
+ActiveRecord::Schema.define(:version => 20150928004426) do
 
   create_table "targets", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20150906124211) do
     t.text     "sample_queries"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.string   "home"
+    t.boolean  "publicity"
   end
 
   add_index "targets", ["user_id"], :name => "index_targets_on_user_id"
