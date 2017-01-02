@@ -1,5 +1,9 @@
 LodqaDb::Application.routes.draw do
-  resources :targets
+  resources :targets do
+    collection do
+      get 'names'
+    end
+  end
 
   devise_for :users
 

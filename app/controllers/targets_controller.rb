@@ -12,6 +12,14 @@ class TargetsController < ApplicationController
     end
   end
 
+  # GET /targets/names.json
+  def names
+    names = Target.pluck(:name)
+    respond_to do |format|
+      format.json { render json: names }
+    end
+  end
+
   # GET /targets/1
   # GET /targets/1.json
   def show
