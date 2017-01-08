@@ -2,6 +2,7 @@
 
 body {
   margin: 0;
+  width: 800px;
   background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -11,14 +12,54 @@ body {
 
 .frame {
   margin: 0;
-  padding: 4px;
-  background-color: #fff;
-  color: $main_color;
+  padding: 0;
+  background-color: #ffffff;
+  color: #222288;
+  a {
+    color: #222288;
+    text-decoration: none;
+
+    &:visited {
+      color: #222288;
+    }
+
+    &:hover {
+      color: #000044;
+    }
+  }
+
+}
+
+#header {
+  position: relative;
+  height: 50px;
 }
 
 #title {
-  font-size: 24pt;
-  margin:10px 0;
+  position: absolute;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 4px;
+}
+
+#logo {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+
+  img {
+    height: 100%;
+  }
+}
+
+#logo-sub {
+  position: relative;
+  top: 11px;
+  display: inline-block;
+  height: 100%;
+
+  font-size: 32pt;
+  font-style: italic;
   color: #00aaaa;
   a {
     color: #00aaaa;
@@ -26,8 +67,10 @@ body {
   }
 }
 
-#account{
-  text-align:right;
+#account {
+  position: absolute;
+  right: 0;
+  padding: 4px;
   font-size:small;
 }
 
@@ -37,23 +80,28 @@ body {
     padding: 0;
     margin: 0;
     border-radius: 3px;
-    background-color: $background_sub_color;
   }
   li {
     display: inline;
     margin-left: 0.5em;
-  }
-  a {
-    color: $main_color;
-  }
-  a:hover {
-    color: $main_color;
-    background-color: $background_focus_color;
+    a {
+      border-radius: 5px;
+      font-weight: 800;
+      padding: 0.2em 0.4em;
+      background: #ffffee;
+      text-shadow: none;
+      transition: all .25s;
+      -moz-transition: all .25s;
+      -webkit-transition: all .25s;
+      &:hover {
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .1);
+          text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+      }
+    }    
   }
 }
 
-.content {
-  margin: 0;
+#main {
   padding: 4px;
 }
 
@@ -112,10 +160,4 @@ div {
     font-size: 12px;
     list-style: square;
   }
-}
-
-#logo {
-    display: inline-block;
-    vertical-align: middle;
-    width: 120px;
 }

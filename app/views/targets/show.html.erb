@@ -1,7 +1,7 @@
-<%= render partial: 'control' %>
+<%= render partial: 'show_control' %>
 <table class='column-head'>
 <tr>
-  <th style="width:12em">Maintainer:</th>
+  <th style="width:13em">Maintainer:</th>
   <td><%= @target.user.email %></td>
 </tr>
 
@@ -21,28 +21,28 @@
 </tr>
 
 <tr>
-  <th>List in LODQA home:</th>
+  <th>Public?:</th>
   <td><%= @target.publicity ? 'Yes' : 'No' %></td>
 </tr>
 
 <tr>
-  <th>Parser url:</th>
-  <td><%= @target.parser_url %></td>
-</tr>
-
-<tr>
-  <th>Endpoint url:</th>
+  <th>Endpoint URL:</th>
   <td><%= @target.endpoint_url %></td>
 </tr>
 
 <tr>
-  <th>Graph uri:</th>
+  <th>Graph URI:</th>
   <td><%= @target.graph_uri %></td>
 </tr>
 
 <tr>
-  <th>Dictionary url:</th>
+  <th>Dictionary URL:</th>
   <td><%= @target.dictionary_url %></td>
+</tr>
+
+<tr>
+  <th>Predicate Dictionary URL:</th>
+  <td><%= @target.pred_dictionary_url %></td>
 </tr>
 
 <tr>
@@ -83,4 +83,4 @@
   </td>
 </tr>
 </table>
-<%= render partial: 'control' %>
+<%= render partial: 'show_control' %>

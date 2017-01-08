@@ -8,23 +8,26 @@
 </head>
 <body>
 <div id="header" class="frame">
-<div id="title">
-<a href="http://lodqa.org"><img src='/assets/lodqa-logo.svg' alt="LODQA" id='logo' title="Question-Answering over Linked Open Data"></a>
-<%= link_to 'Targets', root_path %>
-</div>
-<div id="account" class="menu">
-	<ul>
-		<li><%= render 'devise/menu/registration_items' %></li>
-		<li><%= render 'devise/menu/login_items' %></li>
-	</ul>
-</div>
+	<div id="title">
+		<div id="logo">
+			<a href="http://lodqa.org"><img src='/assets/lodqa-logo.svg' alt="LODQA" title="Question-Answering over Linked Open Data"></a>
+		</div>
+		<div id="logo-sub">
+			<%= link_to 'Targets', root_path %>
+		</div>
+	</div>
+	<div id="account" class="menu">
+		<ul>
+			<li><%= render 'devise/menu/registration_items' %></li>
+			<li><%= render 'devise/menu/login_items' %></li>
+		</ul>
+	</div>
 </div>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<div id="main" class="frame">
-<%= yield %>
+<div id="main">
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<%= yield %>
 </div>
 </body>
 </html>

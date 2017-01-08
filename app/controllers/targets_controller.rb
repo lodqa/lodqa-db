@@ -4,7 +4,21 @@ class TargetsController < ApplicationController
   # GET /targets
   # GET /targets.json
   def index
-    @targets = Target.all
+    conditions =  if current_user.present?
+      if current_user.root
+        []
+      else
+        ["publicity = ? OR user_id = ?", true, current_user.id]
+      end
+    else
+      ["publicity = ?", true]
+    end
+
+    @targets_grid = initialize_grid(
+      Target,
+      conditions: conditions,
+      include: :user
+    )
 
     respond_to do |format|
       format.html # index.html.erb

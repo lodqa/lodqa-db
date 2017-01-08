@@ -1,24 +1,30 @@
-<h1>List</h1>
-
 <div class='control'>
 <span class='button'><%= link_to 'New Target', new_target_path %></span>
 </div>
 
-<table>
-  <tr>
-    <th style="width:200px">Name</th>
-    <th>Description</th>
-    <th style="width:200px">User</th>
-  </tr>
+<%=
+  grid(@targets_grid) do |g|
 
-<% @targets.each do |target| %>
-  <tr>
-    <td><%= link_to target.name, target %></td>
-    <td><%= target.description %></td>
-    <td><%= target.user.email %></td>
-  </tr>
-<% end %>
-</table>
+    g.column name: 'Name', attribute: 'name' do |target|
+      [link_to(target.name, target), {style: 'width:10em; text-align:center'}]
+    end
+
+    if current_user.present?
+      g.column name: '', attribute: 'publicity', filter: false do |target|
+        [target.publicity ? '<i class="fa fa-eye" aria-hidden="true" title="Public"></i>'.html_safe : '', {style: 'width:1em; text-align:center'}]
+      end
+    end
+
+    g.column name: 'Description', attribute: 'description' do |target|
+      [strip_tags(target.description), {style: 'width:32em; max-width: 32em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis'}]
+    end
+
+    g.column name: 'Creator', attribute: 'email', assoc: :user do |target|
+      [render(partial: 'users/user', object: target.user), {style: 'width:15em; text-align:center'}]
+    end
+
+  end
+-%>
 
 <div class='control'>
 <span class='button'><%= link_to 'New Target', new_target_path %></span>

@@ -2,27 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table, th, td {
-	border-style: solid;
-	border-color: #aaaaff;
-	border-width: 1px;
-	border-collapse: collapse;
-	padding:4px;
+th, td {
+	padding: 4px;
 }
 
-th {
+table {
+	width: 100%;
+	border: solid 1px #aaf;
+	border-collapse: collapse;
+}
+
+thead {
+	border-style: none;
+	border-collapse: collapse;
+	border-width: 0;
+	padding:4px;
 	background-color: #eeeeff;
+}
+
+tbody tr:nth-child(even) {
+	background-color: #f5f5f5;
 }
 
 table.column-head th{
 	text-align: right;
 }
 
-table {
-	width:100%;
-}
-
 td input[type=text], textarea {
+  box-sizing: border-box;
 	width:100%;
 }
 

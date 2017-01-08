@@ -3,27 +3,51 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <table class="form">
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <tr>
+      <th><%= f.label :username %></th>
+      <td><%= f.text_field :username, autofocus: true %></td>
+    </tr>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <tr>
+      <th><%= f.label :email %></th>
+      <td><%= f.email_field :email %></td>
+    </tr>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <tr>
+        <th>Currently waiting confirmation for</th>
+        <td><%= resource.unconfirmed_email %></td>
+      </tr>
+    <% end %>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
+    <tr>
+      <th><%= f.label :password %></th>
+      <td><%= f.password_field :password, autocomplete: "off" %></td>
+      <td><i>(leave blank if you don't want to change it)</i></td>
+    </tr>
 
-  <div><%= f.submit "Update" %></div>
+    <tr>
+      <th><%= f.label :password_confirmation %></th>
+      <td><%= f.password_field :password_confirmation, autocomplete: "off" %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :current_password %></th>
+      <td><%= f.password_field :current_password, autocomplete: "off" %></td>
+      <td><i>(necessary to confirm your changes)</i></td>
+    </tr>
+
+    <tr>
+      <th colspan="2"><%= f.submit "Update" %></th>
+    </tr>
+
+  </table>
+
 <% end %>
+<br/>
 
-<h3>Cancel my account</h3>
+<%= button_to "Back", :back %>
+<%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

@@ -1,7 +1,8 @@
 <div class="control">
+<span class='button'><%= link_to image_tag('/assets/lodqa-logo.svg', height: '12'), "http://lodqa.org/?target=#{@target.name}", title: "Open LODQA with this target" %></span>
+<span class='button'><%= link_to 'List', targets_path %></span>
 <% if user_signed_in? && @target.editable?(current_user) -%>
   <span class='button'><%= link_to 'Edit', edit_target_path(@target) %></span>
   <span class='button'><%= link_to 'Destroy', @target, method: :delete, data: { confirm: 'Are you sure?' } %></span>
 <% end %>
-<span class='button'><%= link_to 'List', targets_path %></span>
 </div>

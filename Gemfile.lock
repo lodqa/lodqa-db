@@ -47,6 +47,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.6.0)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     friendly_id (4.0.10.1)
       activerecord (>= 3.0, < 4.0)
     hike (1.2.3)
@@ -56,6 +58,9 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.10.0)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -120,6 +125,10 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
+    wice_grid (3.6.2)
+      activerecord (> 3.2)
+      coffee-rails (> 3.2)
+      kaminari (~> 0.16)
 
 PLATFORMS
   ruby
@@ -127,6 +136,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
+  font-awesome-sass (~> 4.3)
   friendly_id
   jquery-rails
   rack-cors
@@ -135,3 +145,7 @@ DEPENDENCIES
   sqlite3
   uglifier (>= 1.0.3)
   unicorn
+  wice_grid (~> 3.5)
+
+BUNDLED WITH
+   1.13.3

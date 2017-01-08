@@ -2,7 +2,7 @@ class Target < ActiveRecord::Base
   include FriendlyId
   friendly_id :name
 
-  attr_accessible :description, :user, :dictionary_url, :endpoint_url, :graph_uri, :home, :ignore_predicates, :max_hop, :name, :parser_url, :publicity, :sample_queries, :sortal_predicates
+  attr_accessible :description, :user, :dictionary_url, :pred_dictionary_url, :endpoint_url, :graph_uri, :home, :ignore_predicates, :max_hop, :name, :parser_url, :publicity, :sample_queries, :sortal_predicates
   belongs_to :user
   serialize :ignore_predicates, Array
   serialize :sortal_predicates, Array
