@@ -19,54 +19,121 @@
   <tr>
     <th style="width:13em"><%= f.label :maintainer %></th>
     <td><%= current_user.email %></td>
+    <td></td>
   </tr>
   <tr>
     <th><%= f.label :name %></th>
     <td><%= f.text_field :name, :required => true %></td>
+    <td>
+      <a href="#help-name" rel="facebox"><i class="help-link fa fa-question-circle" aria-hidden="true"></i></a>
+      <div id="help-name" class="help">
+        <h1>Target name</h1>
+        <p>Note that the name of a target will become a part of the URL of the target.</p>
+        <p>A target name may include
+          <ul>
+            <li>lowercase/upper letters,</li>
+            <li>decimal digits,</li>
+            <li>hyphen ('-'), underscore ('_'), and</li>
+            <li>space (' ').</li>
+          </ul>
+        </p>
+        <p>However, a target name must not begin with hyphen, underscore or space.</p>
+      </div>
+    </td>
   </tr>
   <tr>
     <th><%= f.label :description %></th>
     <td><%= f.text_area :description %></td>
+    <td></td>
   </tr>
   <tr>
     <th><%= f.label :project_home, :value => "Project Homepage URL if any" %></th>
     <td><%= f.text_field :home %></td>
+    <td></td>
   </tr>
   <tr>
     <th>Public?</th>
     <td><%= f.check_box :publicity %>Yes, I want this target to be public.</td>
+    <td>
+      <a href="#help-publicity" rel="facebox"><i class="help-link fa fa-question-circle" aria-hidden="true"></i></a>
+      <div id="help-publicity" class="help">
+        <h1>Publicity of a target</h1>
+        <p><i>A public target</i> will be shown the target list, and also in the homepage of LODQA, so that other people can find and use it.</p>
+        <p><i>A non-public target</i> will not be publicly listed.</p>
+        <p>Note that, however, any target is accessible through its URL, no matter whether it is public or not.</p>
+        <p>In other words, the difference between a public and a non-public targets is in their findability rather than in their accessibility.</p>
+      </div>
+    </td>
   </tr>
   <tr>
     <th>Endpoint URL</th>
     <td><%= f.text_field :endpoint_url %></td>
+    <td></td>
   </tr>
   <tr>
     <th>Graph URI</th>
     <td><%= f.text_field :graph_uri %></td>
+    <td></td>
   </tr>
   <tr>
     <th>Dictionary URL</th>
     <td><%= f.text_field :dictionary_url %></td>
+    <td>
+      <a href="#help-dictionary-url" rel="facebox"><i class="help-link fa fa-question-circle" aria-hidden="true"></i></a>
+      <div id="help-dictionary-url" class="help">
+        <h1>Dictionary URL</h1>
+        <p>The URL of a dictionary-lookup API, through which the URIs of terms may be obtained.</p>
+        <p>When <i>Predicate Dictionary URL</i> (see below) is specified, <i>Dictionary URL</i> is used only non-predicate terms</p>
+        <p>Otherwise, it is used for both predicate and non-predicate terms.</p>
+        <p>For publicly available customizable dictionary lookup APIs, see <a href="http://pubdictionaries.org">PubDictionaries</a>.</p>
+      </div>
+    </td>
   </tr>
   <tr>
     <th>Predicate Dictionary URL</th>
     <td><%= f.text_field :pred_dictionary_url %></td>
+    <td>
+      <a href="#help-pred-dictionary-url" rel="facebox"><i class="help-link fa fa-question-circle" aria-hidden="true"></i></a>
+      <div id="help-pred-dictionary-url" class="help">
+        <h1>Predicate Dictionary URL</h1>
+        <p>Optionally, the URL of another dictionary-lookup API may be speficied, for the purpose of searching for the URIs of predicates.</p>
+        <p>When it is specified, URIs for predicates will be searched for using it.</p>
+      </div>
+    </td>
   </tr>
   <tr>
     <th><%= f.label :max_hop %></th>
     <td><%= f.number_field :max_hop %></td>
+    <td></td>
   </tr>
   <tr>
     <th><%= f.label :ignore_predicates %></th>
     <td><%= f.text_area :ignore_predicates %></td>
+    <td>
+      <a href="#help-ignore-predicates" rel="facebox"><i class="help-link fa fa-question-circle" aria-hidden="true"></i></a>
+      <div id="help-ignore-predicates" class="help">
+        <h1>Ignore Predicates</h1>
+        <p>A set of predicates which will be ignored during LODQA search.</p>
+        <p>Some noisy results may be supressed by speficying the predicates to be ignored.</p>
+      </div>
+    </td>
   </tr>
   <tr>
     <th><%= f.label :sortal_predicates %></th>
     <td><%= f.text_area :sortal_predicates %></td>
+    <td>
+      <a href="#help-sortal-predicates" rel="facebox"><i class="help-link fa fa-question-circle" aria-hidden="true"></i></a>
+      <div id="help-sortal-predicates" class="help">
+        <h1>Sortal Predicates</h1>
+        <p>A set of predicates which represent "sort of"-kind of relationship.</p>
+        <p>By default, <i>rdf:type</i> and <i>rdfs:subClassOf</i> are classified as sortal predicates.</p>
+      </div>
+    </td>
   </tr>
   <tr>
     <th><%= f.label :sample_queries %></th>
     <td><%= f.text_area :sample_queries %></td>
+    <td></td>
   </tr>
   </table>
   <div class="actions control">

@@ -9,6 +9,7 @@ class Target < ActiveRecord::Base
   serialize :sample_queries, Array
 
   validates :name, :presence => true
+  validates_format_of :name, :with => /\A[a-zA-Z0-9][a-zA-Z0-9 _-]+\z/i
   validates :user, :presence => true
   validates :endpoint_url, :presence => true
   validates :dictionary_url, :presence => true
