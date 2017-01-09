@@ -17,7 +17,7 @@
 
 <tr>
   <th>Project Home:</th>
-  <td><%= @target.home %></td>
+  <td><%= link_to @target.home, @target.home %></td>
 </tr>
 
 <tr>
@@ -27,7 +27,7 @@
 
 <tr>
   <th>Endpoint URL:</th>
-  <td><%= @target.endpoint_url %></td>
+  <td><%= link_to @target.endpoint_url, @target.endpoint_url %></td>
 </tr>
 
 <tr>
