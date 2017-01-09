@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require wice_grid
+//= require jquery.facebox
 //= require_tree .

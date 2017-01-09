@@ -10,6 +10,7 @@ gem 'devise'
 gem 'friendly_id'
 gem 'wice_grid', '~> 3.5'
 gem 'font-awesome-sass',  '~> 4.3'
+gem 'facebox-rails'
 
 gem 'rack-cors', :require => 'rack/cors'
 

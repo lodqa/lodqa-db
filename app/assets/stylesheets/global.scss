@@ -100,3 +100,26 @@ h1 {
     color:#333388;
     text-decoration: none;
 }
+
+th .button {
+    width: 100%;
+}
+
+
+.help-link {
+  color: green;
+  font-size: 1.2em;
+}
+
+.help {
+  display: none;
+}
+
+.popup {
+  .content {
+    h1 {
+      border-style: none;
+    }
+  }
+}
+

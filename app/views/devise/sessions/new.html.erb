@@ -13,14 +13,19 @@
 		<td><%= f.password_field :password, autocomplete: "off" %></td>
 	</tr>
 
-	<tr>
+  <% if devise_mapping.rememberable? -%>
+		<tr>
+			<th><%= f.label :remember_me %></th>
+			<td><%= f.check_box :remember_me %></td>
+		</tr>
+  <% end -%>
+
+  <tr>
 		<th colspan="2">
-		  <% if devise_mapping.rememberable? -%>
-		    <%= f.check_box :remember_me %> <%= f.label :remember_me %>
-		  <% end -%>
 		  <%= f.submit "Log in", class: 'button' %>
 		</th>
 	</tr>
+
 </table>
 
 <% end %>
