@@ -22,13 +22,13 @@ class TargetsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @targets }
+      format.json { render json: Target.where(publicity: true) }
     end
   end
 
   # GET /targets/names.json
   def names
-    names = Target.pluck(:name)
+    names = Target.where(publicity: true).pluck(:name)
     respond_to do |format|
       format.json { render json: names }
     end
@@ -81,7 +81,12 @@ class TargetsController < ApplicationController
         format.html { redirect_to @target, notice: 'Target was successfully created.' }
         format.json { render json: @target, status: :created, location: @target }
       else
-        format.html { render action: "new" }
+        format.html {
+          @target.sample_queries = @target.sample_queries.join("\n")
+          @target.sortal_predicates = @target.sortal_predicates.join("\n")
+          @target.ignore_predicates = @target.ignore_predicates.join("\n")
+          render action: "new"
+        }
         format.json { render json: @target.errors, status: :unprocessable_entity }
       end
     end
