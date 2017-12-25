@@ -1,8 +1,16 @@
-<div class="control">
-<span class='button'><%= link_to image_tag('/assets/lodqa-logo.svg', height: '12'), "http://lodqa.org/?target=#{@target.name}", title: "Open LODQA with this target" %></span>
-<span class='button'><%= link_to 'List', targets_path %></span>
+<table style="border-style:none">
+<tr>
+<td style="width:25%">
+<span class='button'><%= link_to 'Back to List', targets_path %></span>
+</td>
+<td style="text-align:center">
 <% if user_signed_in? && @target.editable?(current_user) -%>
   <span class='button'><%= link_to 'Edit', edit_target_path(@target) %></span>
-  <span class='button'><%= link_to 'Destroy', @target, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+  <span class='button'><%= link_to 'Delete', @target, method: :delete, data: { confirm: 'Are you sure?' } %></span>
 <% end %>
-</div>
+</td>
+<td style="width:25%; text-align:right">
+<span class='button'><%= link_to 'Open in LODQA', "http://lodqa.org/?target=#{@target.name}", title: "Open LODQA with this target" %></span>
+</td>
+</tr>
+</table>

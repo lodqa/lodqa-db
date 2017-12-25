@@ -1,6 +1,4 @@
-<div class='control'>
-<span class='button'><%= link_to 'New Target', new_target_path %></span>
-</div>
+<h1>Target List</h1>
 
 <%=
   grid(@targets_grid) do |g|
@@ -27,5 +25,5 @@
 -%>
 
 <div class='control'>
-<span class='button'><%= link_to 'New Target', new_target_path %></span>
+<span class='button'><%= link_to 'Create a new LODQA target', new_target_path %></span>
 </div>

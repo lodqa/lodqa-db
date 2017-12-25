@@ -1,9 +1,4 @@
 <%= form_for(@target) do |f| %>
-  <div class="actions control">
-    <%= f.submit class: 'button'%>
-    <span class='button'><%= link_to 'Cancel', @target %></span>
-    <span class='button'><%= link_to 'List', targets_path %></span>
-  </div>
   <% if @target.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@target.errors.count, "error") %> prohibited this target from being saved:</h2>
@@ -136,9 +131,18 @@
     <td></td>
   </tr>
   </table>
-  <div class="actions control">
-    <%= f.submit class: 'button' %>
-    <span class='button'><%= link_to 'Cancel', @target %></span>
-    <span class='button'><%= link_to 'List', targets_path %></span>
-  </div>
+
+  <table style="border-style:none">
+    <tr>
+      <td style="width:25%">
+        <span class='button'><%= link_to 'Cancel', @target %></span>
+      </td>
+      <td style="text-align:center">
+        <%= f.submit class: 'button' %>
+      </td>
+      <td style="width:25%; text-align:right">
+        &nbsp;
+      </td>
+    </tr>
+  </table>
 <% end %>

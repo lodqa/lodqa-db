@@ -1,57 +1,52 @@
-<%= render partial: 'show_control' %>
+<h1><%= @target.name %></h1>
+
+<% if @target.description %>
+<p><%= @target.description %></p>
+<% end %>
+
 <table class='column-head'>
 <tr>
-  <th style="width:13em">Maintainer:</th>
+  <th style="width:13em">Maintainer</th>
   <td><%= @target.user.email %></td>
 </tr>
 
 <tr>
-  <th>Name:</th>
-  <td><%= @target.name %></td>
-</tr>
-
-<tr>
-  <th>Description:</th>
-  <td><%= @target.description %></td>
-</tr>
-
-<tr>
-  <th>Project Home:</th>
+  <th>Project Home</th>
   <td><%= link_to @target.home, @target.home %></td>
 </tr>
 
 <tr>
-  <th>Public?:</th>
+  <th>Public?</th>
   <td><%= @target.publicity ? 'Yes' : 'No' %></td>
 </tr>
 
 <tr>
-  <th>Endpoint URL:</th>
+  <th>Endpoint URL</th>
   <td><%= link_to @target.endpoint_url, @target.endpoint_url %></td>
 </tr>
 
 <tr>
-  <th>Graph URI:</th>
+  <th>Graph URI</th>
   <td><%= @target.graph_uri %></td>
 </tr>
 
 <tr>
-  <th>Dictionary URL:</th>
+  <th>Dictionary URL</th>
   <td><%= @target.dictionary_url %></td>
 </tr>
 
 <tr>
-  <th>Predicate Dictionary URL:</th>
+  <th>Predicate Dictionary URL</th>
   <td><%= @target.pred_dictionary_url %></td>
 </tr>
 
 <tr>
-  <th>Max hop:</th>
+  <th>Max hop</th>
   <td><%= @target.max_hop %></td>
 </tr>
 
 <tr>
-  <th>Ignore predicates:</th>
+  <th>Ignore predicates</th>
   <td>
     <% unless @target.ignore_predicates.empty? %>
 <pre>
@@ -62,7 +57,7 @@
 </tr>
 
 <tr>
-  <th>Sortal predicates:</th>
+  <th>Sortal predicates</th>
   <td>
     <% unless @target.sortal_predicates.empty? %>
 <pre>
@@ -73,7 +68,7 @@
 </tr>
 
 <tr>
-  <th>Sample queries:</th>
+  <th>Sample queries</th>
   <td>
     <% unless @target.sample_queries.empty? %>
 <pre>

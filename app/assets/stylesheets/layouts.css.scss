@@ -2,11 +2,11 @@
 
 body {
   margin: 0;
-  width: 800px;
+  max-width: 1000px;
   background-color: #fff;
   color: $main_color;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
   line-height: 18px;
 
   a {
@@ -19,15 +19,19 @@ body {
 
     &:hover {
       color: darken($main_color,50%);
-      background-color: #ffffcc;
     }
   }
 }
 
+input, textarea, select, button {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+}
+
 .frame {
   margin: 0;
-  padding: 0;
-  background-color: #ffffff;
+  padding: 2px 2px 4px 2px;
+  background-color: #bbddff;
   color: #222288;
   a {
     color: #222288;
@@ -46,7 +50,7 @@ body {
 
 #header {
   position: relative;
-  height: 50px;
+  height: 60px;
 }
 
 #title {
@@ -58,7 +62,7 @@ body {
 
 #logo {
   display: inline-block;
-  height: 100%;
+  height: 90%;
   vertical-align: middle;
 
   img {
@@ -68,15 +72,15 @@ body {
 
 #logo-sub {
   position: relative;
-  top: 11px;
+  top: 15px;
   display: inline-block;
   height: 100%;
 
-  font-size: 32pt;
-  font-style: italic;
-  color: #00aaaa;
+  font-family: 'Anton', sans-serif;
+  font-size: 18pt;
+  color: #0077ff;
   a {
-    color: #00aaaa;
+    color: #0077aa;
     text-decoration: none;
   }
 }
@@ -102,7 +106,6 @@ body {
       border-radius: 5px;
       font-weight: 800;
       padding: 0.2em 0.4em;
-      background: #ffffee;
       text-shadow: none;
       transition: all .25s;
       -moz-transition: all .25s;
@@ -117,12 +120,6 @@ body {
 
 #main {
   padding: 4px;
-}
-
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
 }
 
 a {
