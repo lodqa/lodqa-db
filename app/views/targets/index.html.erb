@@ -14,13 +14,19 @@
     end
 
     g.column name: 'Description', attribute: 'description' do |target|
-      [strip_tags(target.description), {style: 'width:32em; max-width: 32em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis'}]
+      [link_to(strip_tags(target.description), target), {title: target.description, style: 'width:32em; max-width: 32em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis'}]
     end
 
     g.column name: 'Creator', attribute: 'email', assoc: :user do |target|
       [render(partial: 'users/user', object: target.user), {style: 'width:15em; text-align:center'}]
     end
 
+    g.column name: '' do |target|
+      [link_to(image_tag('/assets/lodqa-logo.svg', height: '12'), "http://lodqa.org/?target=#{target.name}",
+        {title: "Open LODQA with this target", class: :button,
+         style: "box-sizing:border-box; width:100%; padding:3px 6px; text-align:center"}),
+      {}]
+    end
   end
 -%>
 

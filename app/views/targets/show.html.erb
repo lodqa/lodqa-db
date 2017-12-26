@@ -46,7 +46,7 @@
 </tr>
 
 <tr>
-  <th>Ignore predicates</th>
+  <th title='Predicates which will be ignored by LODQA.'>Ignore predicates</th>
   <td>
     <% unless @target.ignore_predicates.empty? %>
 <pre>
@@ -57,7 +57,7 @@
 </tr>
 
 <tr>
-  <th>Sortal predicates</th>
+  <th title='Predicates which represent kind of "sort of"-relationship. By default, rdf:type and rdfs:subClassOf are classified as sortal predicates.'>Sortal predicates</th>
   <td>
     <% unless @target.sortal_predicates.empty? %>
 <pre>

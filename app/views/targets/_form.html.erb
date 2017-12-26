@@ -78,8 +78,8 @@
       <div id="help-dictionary-url" class="help">
         <h1>Dictionary URL</h1>
         <p>The URL of a dictionary-lookup API, through which the URIs of terms may be obtained.</p>
-        <p>When <i>Predicate Dictionary URL</i> (see below) is specified, <i>Dictionary URL</i> is used only non-predicate terms</p>
-        <p>Otherwise, it is used for both predicate and non-predicate terms.</p>
+        <p>When <i>Predicate Dictionary URL</i> (see below) is specified also, the dictionary spcified here will be used only for non-predicate terms</p>
+        <p>Otherwise, it is used both for predicate and non-predicate terms.</p>
         <p>For publicly available customizable dictionary lookup APIs, see <a href="http://pubdictionaries.org">PubDictionaries</a>.</p>
       </div>
     </td>
@@ -91,7 +91,7 @@
       <a href="#help-pred-dictionary-url" rel="facebox"><i class="help-link fa fa-question-circle" aria-hidden="true"></i></a>
       <div id="help-pred-dictionary-url" class="help">
         <h1>Predicate Dictionary URL</h1>
-        <p>Optionally, the URL of another dictionary-lookup API may be speficied, for the purpose of searching for the URIs of predicates.</p>
+        <p>Optionally, the URL of a dictionary-lookup API for predicate term may be speficied, separetely from <i>Dictionary URL</i> above.</p>
         <p>When it is specified, URIs for predicates will be searched for using it.</p>
       </div>
     </td>
@@ -108,8 +108,8 @@
       <a href="#help-ignore-predicates" rel="facebox"><i class="help-link fa fa-question-circle" aria-hidden="true"></i></a>
       <div id="help-ignore-predicates" class="help">
         <h1>Ignore Predicates</h1>
-        <p>A set of predicates which will be ignored during LODQA search.</p>
-        <p>Some noisy results may be supressed by speficying the predicates to be ignored.</p>
+        <p>Predicates which will be ignored during LODQA search.</p>
+        <p>By specifying them, some noisy results may be supressed.</p>
       </div>
     </td>
   </tr>
@@ -120,7 +120,7 @@
       <a href="#help-sortal-predicates" rel="facebox"><i class="help-link fa fa-question-circle" aria-hidden="true"></i></a>
       <div id="help-sortal-predicates" class="help">
         <h1>Sortal Predicates</h1>
-        <p>A set of predicates which represent "sort of"-kind of relationship.</p>
+        <p>Predicates which represent a kind of "sort of"-relationship.</p>
         <p>By default, <i>rdf:type</i> and <i>rdfs:subClassOf</i> are classified as sortal predicates.</p>
       </div>
     </td>
