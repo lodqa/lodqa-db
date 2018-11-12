@@ -1,22 +1,28 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
+  name: one
   description: MyText
-  user: 
+  user:
   parser_url: MyString
   endpoint_url: MyString
   graph_uri: MyString
   dictionary_url: MyString
   max_hop: 1
-  ignore_predicates: MyText
-  sortal_predicates: MyText
-  sample_queries: MyText
+  ignore_predicates:
+    - MyText
+    - MyText
+  sortal_predicates:
+    - MyText
+    - MyText
+  sample_queries:
+    - MyText
+    - MyText
 
 two:
-  name: MyString
+  name: two
   description: MyText
-  user: 
+  user:
   parser_url: MyString
   endpoint_url: MyString
   graph_uri: MyString
