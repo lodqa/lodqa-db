@@ -45,3 +45,5 @@ gem 'unicorn'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'json', github: 'flori/json', branch: 'v1.8'
