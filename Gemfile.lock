@@ -154,7 +154,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  coffee-rails (~> 3.2.1)
   devise
   facebox-rails
   font-awesome-sass (~> 4.3)
