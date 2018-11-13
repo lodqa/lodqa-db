@@ -6,10 +6,6 @@ class User < ActiveRecord::Base
 
 	attr_accessor :login
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
-
   validates :email, :presence => true, uniqueness: true
   validates :username, :presence => true, :length => {:minimum => 5, :maximum => 20}, uniqueness: true
   validates_format_of :username, :with => /\A[a-zA-Z0-9][a-zA-Z0-9 _-]+\z/i
