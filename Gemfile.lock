@@ -162,7 +162,7 @@ DEPENDENCIES
   json!
   rack-cors
   rails (= 3.2.22.5)
-  sass-rails (~> 3.2.3)
+  sass-rails
   sqlite3
   test-unit
   uglifier (>= 1.0.3)
