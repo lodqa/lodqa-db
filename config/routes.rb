@@ -6,7 +6,7 @@ LodqaDb::Application.routes.draw do
   end
 
   devise_for :users
-  match '/users/:username' => 'users#show', :as => 'show_user'
+  get '/users/:username' => 'users#show', :as => 'show_user'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
