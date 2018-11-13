@@ -37,7 +37,7 @@ class TargetsController < ApplicationController
   # GET /targets/1
   # GET /targets/1.json
   def show
-    @target = Target.find(params[:id])
+    @target = Target.find_by!(name: params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -61,7 +61,7 @@ class TargetsController < ApplicationController
 
   # GET /targets/1/edit
   def edit
-    @target = Target.find(params[:id])
+    @target = Target.find_by!(name: params[:id])
     @target.sample_queries = @target.sample_queries.join("\n")
     @target.sortal_predicates = @target.sortal_predicates.join("\n")
     @target.ignore_predicates = @target.ignore_predicates.join("\n")
@@ -95,7 +95,7 @@ class TargetsController < ApplicationController
   # PUT /targets/1
   # PUT /targets/1.json
   def update
-    @target = Target.find(params[:id])
+    @target = Target.find_by!(name: params[:id])
     update = params[:target]
     update["sample_queries"] = update["sample_queries"].split(/[\n\r\t]+/)
     update["sortal_predicates"] = update["sortal_predicates"].split(/[\n\r\t]+/)
@@ -115,7 +115,7 @@ class TargetsController < ApplicationController
   # DELETE /targets/1
   # DELETE /targets/1.json
   def destroy
-    @target = Target.find(params[:id])
+    @target = Target.find_by!(name: params[:id])
     @target.destroy
 
     respond_to do |format|
