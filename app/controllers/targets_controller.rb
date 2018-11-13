@@ -70,7 +70,7 @@ class TargetsController < ApplicationController
   # POST /targets
   # POST /targets.json
   def create
-    @target = Target.new(params[:target])
+    @target = Target.new(target_params)
     @target.user = current_user
     @target.sample_queries = @target.sample_queries.split(/[\n\r\t]+/)
     @target.sortal_predicates = @target.sortal_predicates.split(/[\n\r\t]+/)
@@ -96,7 +96,7 @@ class TargetsController < ApplicationController
   # PUT /targets/1.json
   def update
     @target = Target.find_by!(name: params[:id])
-    update = params[:target]
+    update = target_params
     update["sample_queries"] = update["sample_queries"].split(/[\n\r\t]+/)
     update["sortal_predicates"] = update["sortal_predicates"].split(/[\n\r\t]+/)
     update["ignore_predicates"] = update["ignore_predicates"].split(/[\n\r\t]+/)
@@ -122,5 +122,25 @@ class TargetsController < ApplicationController
       format.html { redirect_to targets_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def target_params
+    params[:target].permit(
+      :description,
+      :user,
+      :dictionary_url,
+      :pred_dictionary_url,
+      :endpoint_url, :graph_uri,
+      :home,
+      :ignore_predicates,
+      :max_hop,
+      :name,
+      :parser_url,
+      :publicity,
+      :sample_queries,
+      :sortal_predicates
+    )
   end
 end

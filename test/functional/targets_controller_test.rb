@@ -47,7 +47,18 @@ class TargetsControllerTest < ActionController::TestCase
   end
 
   test 'should update target' do
-    put :update, id: @target, target: { description: @target.description, dictionary_url: @target.dictionary_url, endpoint_url: @target.endpoint_url, graph_uri: @target.graph_uri, ignore_predicates: @target.ignore_predicates, max_hop: @target.max_hop, name: @target.name, parser_url: @target.parser_url, sample_queries: @target.sample_queries, sortal_predicates: @target.sortal_predicates }
+    put :update, id: @target, target: {
+      description: @target.description,
+      dictionary_url: @target.dictionary_url,
+      endpoint_url: @target.endpoint_url,
+      graph_uri: @target.graph_uri,
+      ignore_predicates: @target.ignore_predicates.join('/t'),
+      max_hop: @target.max_hop,
+      name: @target.name,
+      parser_url: @target.parser_url,
+      sample_queries: @target.sample_queries.join('/t'),
+      sortal_predicates: @target.sortal_predicates.join('/t')
+    }
     assert_redirected_to target_path(assigns(:target))
   end
 
