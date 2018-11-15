@@ -3,7 +3,7 @@
 one:
   name: one
   description: MyText
-  user:
+  user: one
   parser_url: MyString
   endpoint_url: MyString
   graph_uri: MyString
@@ -18,16 +18,23 @@ one:
   sample_queries:
     - MyText
     - MyText
+  publicity: true
 
 two:
   name: two
   description: MyText
-  user:
+  user: two
   parser_url: MyString
   endpoint_url: MyString
   graph_uri: MyString
   dictionary_url: MyString
   max_hop: 1
-  ignore_predicates: MyText
-  sortal_predicates: MyText
-  sample_queries: MyText
+  ignore_predicates:
+    - MyText
+    - MyText
+  sortal_predicates:
+    - MyText
+    - MyText
+  sample_queries:
+    - MyText
+    - MyText

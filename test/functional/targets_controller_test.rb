@@ -5,9 +5,16 @@ class TargetsControllerTest < ActionController::TestCase
 
   setup do
     @target = targets(:one)
-    @target.user = users(:one)
     @target.save!
     sign_in @target.user
+
+    targets(:two).save!
+  end
+
+  test 'should get names of public targets' do
+    get :names, format: :json
+    assert_response :success
+    assert_equal JSON.parse(response.body).first, 'one'
   end
 
   test 'should get index' do
