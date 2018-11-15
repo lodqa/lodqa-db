@@ -13,6 +13,10 @@ gem 'sass-rails'
 gem 'uglifier', '>= 1.0.3'
 gem 'jquery-rails'
 
+group :development do
+	gem 'web-console', '~> 2.0'
+end
+
 group :development, :test do
 	gem 'test-unit'
 end
