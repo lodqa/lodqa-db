@@ -21,4 +21,28 @@ class Target < ActiveRecord::Base
       false
     end
   end
+
+  def ignore_predicates_for_view
+    ignore_predicates.join("\n")
+  end
+
+  def ignore_predicates_for_view=(str)
+    self.ignore_predicates = str.split(/[\n\r\t]+/)
+  end
+
+  def sortal_predicates_for_view
+    sortal_predicates.join("\n")
+  end
+
+  def sortal_predicates_for_view=(str)
+    self.sortal_predicates = str.split(/[\n\r\t]+/)
+  end
+
+  def sample_queries_for_view
+    sample_queries.join("\n")
+  end
+
+  def sample_queries_for_view=(str)
+    self.sample_queries = str.split(/[\n\r\t]+/)
+  end
 end
