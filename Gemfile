@@ -23,5 +23,3 @@ end
 
 # Use unicorn as the app server
 gem 'unicorn'
-
-gem 'json', github: 'flori/json', branch: 'v1.8'
