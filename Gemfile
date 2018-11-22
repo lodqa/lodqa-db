@@ -19,6 +19,7 @@ end
 
 group :development, :test do
 	gem 'test-unit'
+	gem 'test-unit-rr'
 end
 
 # Use unicorn as the app server
