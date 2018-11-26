@@ -49,7 +49,9 @@ module Collector
       end
 
       def sortal_predicates_from options
-        options&.[](:sortal_predicates) || SORTAL_PREDICATES
+        return SORTAL_PREDICATES unless options&.[](:sortal_predicates)&.any?
+
+        options&.[](:sortal_predicates)
       end
     end
   end

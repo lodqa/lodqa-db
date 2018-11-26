@@ -41,4 +41,11 @@ class KlassCollectorTest < ActiveSupport::TestCase
       assert_equal 0, klasses.count
     end
   end
+
+  test 'that it be able to get all class with empty sortal_predicates' do
+    Collector::KlassCollector.get 'http://ep.lodqa.org/qald-biomed/query',
+                                  sortal_predicates: [] do |klasses|
+      assert klasses.count.positive?
+    end
+  end
 end
