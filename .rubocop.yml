@@ -1,8 +1,8 @@
 Metrics/AbcSize:
-  Max: 18
+  Max: 30
 
 Metrics/MethodLength:
-  Max: 18
+  Max: 21
 
 Metrics/LineLength:
   Exclude:

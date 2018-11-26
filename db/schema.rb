@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181126071938) do
+ActiveRecord::Schema.define(version: 20181126083451) do
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "target_name",  limit: 40,               null: false
+    t.string   "job_name",     limit: 30,               null: false
+    t.string   "state",        limit: 8,                null: false
+    t.string   "latest_error", limit: 255, default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "jobs", ["target_name", "job_name"], name: "index_jobs_on_target_name_and_job_name", unique: true
 
   create_table "klasses", force: :cascade do |t|
     t.string "target_name", limit: 40,  null: false
