@@ -22,7 +22,7 @@ h1 {
     -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
     -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
     box-shadow:inset 0px 1px 0px 0px #ffffff;
-    
+
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
     background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
     background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
@@ -119,3 +119,10 @@ h1 {
   }
 }
 
+.job-state {
+  color: green;
+  font-size: 1.2em;
+  &--error {
+    color: red;
+  }
+}

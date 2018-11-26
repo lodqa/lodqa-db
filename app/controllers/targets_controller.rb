@@ -40,6 +40,7 @@ class TargetsController < ApplicationController
   # GET /targets/1.json
   def show
     @target = Target.find_by!(name: params[:id])
+    @lexical_index_job = Job.for_lexical_index_job(params[:id]).first
 
     respond_to do |format|
       format.html # show.html.erb
