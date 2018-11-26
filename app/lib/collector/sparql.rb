@@ -10,9 +10,11 @@ module Collector
       def get_as_json end_point, sparql
         res = invoke end_point, sparql
 
-        raise "SPARQL request error URL: #{end_point}, SPARQL: #{sparql}, STATUS_CODE: #{res.code}, RESPONSE_BODY #{res.body}" unless res.is_a? Net::HTTPSuccess
+        raise Collector::Error, "SPARQL request error URL: #{end_point}, SPARQL: #{sparql}, STATUS_CODE: #{res.code}, RESPONSE_BODY #{res.body}" unless res.is_a? Net::HTTPSuccess
 
         JSON.parse(res.body)['results']['bindings']
+      rescue JSON::ParserError
+        raise Collector::Error, "SPARQL endpoint #{end_point} does not return JSON format!"
       end
 
       private
