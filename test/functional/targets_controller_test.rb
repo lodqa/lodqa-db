@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class TargetsControllerTest < ActionController::TestCase
@@ -36,7 +38,7 @@ class TargetsControllerTest < ActionController::TestCase
         dictionary_url: 'http://example.com',
         sample_queries: 'MyText',
         sortal_predicates: 'MyText',
-        ignore_predicates: 'MyText',
+        ignore_predicates: 'MyText'
       }
     end
 

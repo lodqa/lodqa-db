@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Klass < ActiveRecord::Base
-  def self.append(target_name, klasses)
+  def self.append target_name, klasses
     transaction do
       klasses.each do |url|
         where(target_name: target_name,

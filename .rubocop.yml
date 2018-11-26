@@ -1,0 +1,32 @@
+Metrics/AbcSize:
+  Max: 18
+
+Metrics/MethodLength:
+  Max: 18
+
+Metrics/LineLength:
+  Exclude:
+    - test/**/*_test.rb
+  Max: 219
+
+Style/Documentation:
+  Enabled: false
+
+Style/MethodDefParentheses:
+  EnforcedStyle: require_no_parentheses
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - config.ru
+    - config/**/*
+    - db/migrate/20150906120054_devise_create_users.rb
+    - db/migrate/20170104135500_add_pred_dictionary_url_to_target.rb
+    - db/migrate/20170108072402_add_root_to_users.rb
+    - db/migrate/20170108090040_add_username_to_users.rb
+    - db/seeds.rb
+    - db/schema.rb
+    - script/rails
+    - test/test_helper.rb
+    - Gemfile
+    - Rakefile

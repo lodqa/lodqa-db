@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Target < ActiveRecord::Base
   include FriendlyId
   friendly_id :name
@@ -7,16 +9,16 @@ class Target < ActiveRecord::Base
   serialize :sortal_predicates, Array
   serialize :sample_queries, Array
 
-  validates :name, :presence => true
-  validates_format_of :name, :with => /\A[a-zA-Z0-9][a-zA-Z0-9 _-]+\z/i
-  validates :user, :presence => true
-  validates :endpoint_url, :presence => true
-  validates :dictionary_url, :presence => true
+  validates :name, presence: true
+  validates_format_of :name, with: /\A[a-zA-Z0-9][a-zA-Z0-9 _-]+\z/i
+  validates :user, presence: true
+  validates :endpoint_url, presence: true
+  validates :dictionary_url, presence: true
   validates_uniqueness_of :name
 
-  def editable?(current_user)
+  def editable? current_user
     if current_user.present?
-      self.user == current_user
+      user == current_user
     else
       false
     end
@@ -26,7 +28,7 @@ class Target < ActiveRecord::Base
     ignore_predicates.join("\n")
   end
 
-  def ignore_predicates_for_view=(str)
+  def ignore_predicates_for_view= str
     self.ignore_predicates = str.split(/[\n\r\t]+/)
   end
 
@@ -34,7 +36,7 @@ class Target < ActiveRecord::Base
     sortal_predicates.join("\n")
   end
 
-  def sortal_predicates_for_view=(str)
+  def sortal_predicates_for_view= str
     self.sortal_predicates = str.split(/[\n\r\t]+/)
   end
 
@@ -42,7 +44,7 @@ class Target < ActiveRecord::Base
     sample_queries.join("\n")
   end
 
-  def sample_queries_for_view=(str)
+  def sample_queries_for_view= str
     self.sample_queries = str.split(/[\n\r\t]+/)
   end
 end

@@ -1,18 +1,20 @@
+# frozen_string_literal: true
+
 class TargetsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:new, :edit, :destroy]
+  before_filter :authenticate_user!, only: %i[new edit destroy]
 
   # GET /targets
   # GET /targets.json
   def index
-    conditions =  if current_user.present?
-      if current_user.root
-        []
-      else
-        ["publicity = ? OR user_id = ?", true, current_user.id]
-      end
-    else
-      ["publicity = ?", true]
-    end
+    conditions = if current_user.present?
+                   if current_user.root
+                     []
+                   else
+                     ['publicity = ? OR user_id = ?', true, current_user.id]
+                   end
+                 else
+                   ['publicity = ?', true]
+                 end
 
     @targets_grid = initialize_grid(
       Target,
@@ -72,9 +74,9 @@ class TargetsController < ApplicationController
         format.html { redirect_to @target, notice: 'Target was successfully created.' }
         format.json { render json: @target, status: :created, location: @target }
       else
-        format.html {
-          render action: "new"
-        }
+        format.html do
+          render action: 'new'
+        end
         format.json { render json: @target.errors, status: :unprocessable_entity }
       end
     end
@@ -90,7 +92,7 @@ class TargetsController < ApplicationController
         format.html { redirect_to @target, notice: 'Target was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @target.errors, status: :unprocessable_entity }
       end
     end

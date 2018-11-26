@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Label < ActiveRecord::Base
-  def self.append(target_name, labels)
+  def self.append target_name, labels
     transaction do
       labels.each do |label, url|
         where(target_name: target_name,

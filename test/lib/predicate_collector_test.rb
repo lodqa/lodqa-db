@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class PredicateCollectorTest < ActiveSupport::TestCase
@@ -20,7 +22,7 @@ class PredicateCollectorTest < ActiveSupport::TestCase
 
   test 'that it be able to get all predicate' do
     Collector::PredicateCollector.get 'http://ep.lodqa.org/qald-biomed/query' do |predicates|
-      assert predicates.count > 0
+      assert predicates.count.positive?
       assert predicates.first.is_a?(String)
     end
   end
@@ -35,14 +37,14 @@ class PredicateCollectorTest < ActiveSupport::TestCase
   test 'that it be able to get all predicate with a small offset_size' do
     Collector::PredicateCollector.get 'http://ep.lodqa.org/qald-biomed/query',
                                       offset_size: 50 do |predicates|
-      assert predicates.count > 0
+      assert predicates.count.positive?
     end
   end
 
   test 'that it get predicates with optional ignore_predicates' do
     Collector::PredicateCollector.get 'http://ep.lodqa.org/qald-biomed/query',
                                       ignore_predicates: IGNORE_PREDICATES do |predicates|
-      assert predicates.count > 0
+      assert predicates.count.positive?
       assert predicates.first.is_a?(String)
     end
   end

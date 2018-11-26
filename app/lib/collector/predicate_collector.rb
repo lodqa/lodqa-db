@@ -15,7 +15,7 @@ module Collector
       private
 
       def get_part end_point, offset, limit, options
-        r = SPARQL.get_as_json end_point, sparql_to_get(offset, limit)
+        r = SPARQL.get_as_json end_point, sparql_to_get(offset, limit, options)
         r.map { |b| b.dig 'p', 'value' }
       end
 
@@ -36,12 +36,14 @@ module Collector
         SPARQL
       end
 
-      def sparql_to_get offset, limit
+      def sparql_to_get offset, limit, options
+        ignore_predicates = ignore_predicates_from options
+
         <<~"SPARQL"
           SELECT distinct ?p
           WHERE {
             ?s ?p ?o
-            filter (?p != rdf:type)
+            #{ignore_predicates.map { |p| "filter (?p != <#{p}>)" }.join("\n")}
           }
           GROUP BY ?p
           OFFSET #{offset}

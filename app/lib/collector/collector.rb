@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Collector
   module Collector
     DEFAULT_OFFSET_SIZE = 10_000
@@ -8,14 +9,14 @@ module Collector
       r[0]&.dig('count', 'value').to_i
     end
 
-    def get end_point, initial_offset: 0 , total_count: 0, **options, &block
+    def get end_point, initial_offset: 0, total_count: 0, **options, &block
       total_count = get_total end_point, total_count, options
       get_all end_point, initial_offset, total_count, options, &block
     end
 
     private
 
-    def get_total end_point, total_count, option
+    def get_total end_point, total_count, _option
       total_count ||= count end_point
       Rails.logger.debug "total #{total_count}"
 
@@ -39,14 +40,13 @@ module Collector
 
     def show_plan_to_complete start_at, total_count, done_count, acquired_count
       unit_time, to_complete = calc_remaining_time start_at, total_count, done_count, acquired_count
-      unit = self.name.split('::').last.sub('Collector', '').downcase.pluralize
+      unit = name.split('::').last.sub('Collector', '').downcase.pluralize
       Rails.logger.debug "#{done_count} #{unit} were collected. #{unit_time.floor}s per SPARQL. It will be completed in #{(to_complete / 3600).floor}h #{((to_complete % 3600) / 60).floor}m #{(to_complete % 60).floor}s."
-      # rubocop:enable Metrics/LineLength
     end
 
     def calc_remaining_time start_at, total_count, done_count, acquired_count
       unit_time = Time.now - start_at
-      return [unit_time, 0] if acquired_count == 0
+      return [unit_time, 0] if acquired_count.zero?
 
       to_complete = (total_count - done_count) / acquired_count * unit_time
 

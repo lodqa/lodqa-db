@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class KlassCollectorTest < ActiveSupport::TestCase
@@ -14,7 +16,7 @@ class KlassCollectorTest < ActiveSupport::TestCase
 
   test 'that it be able to get all class' do
     Collector::KlassCollector.get 'http://ep.lodqa.org/qald-biomed/query' do |klasses|
-      assert klasses.count > 0
+      assert klasses.count.positive?
       assert klasses.first.is_a?(String)
     end
   end
@@ -29,7 +31,7 @@ class KlassCollectorTest < ActiveSupport::TestCase
   test 'that it be able to get all class with a small offset_size' do
     Collector::KlassCollector.get 'http://ep.lodqa.org/qald-biomed/query',
                                   offset_size: 5 do |klasses|
-      assert klasses.count > 0
+      assert klasses.count.positive?
     end
   end
 

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class LexicalIndexJob < ActiveJob::Base
   queue_as :default
 
-  def perform(target)
+  def perform target
     Collector::LabelCollector.get target.endpoint_url do |labels|
       Label.append target.name, labels
     end

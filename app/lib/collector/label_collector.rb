@@ -17,7 +17,7 @@ module Collector
     class << self
       private
 
-      def get_part end_point, offset, limit, options
+      def get_part end_point, offset, limit, _options
         r = SPARQL.get_as_json end_point, sparql_to_get(offset, limit)
         r.map do |b|
           l = b.dig 'l', 'value'
@@ -26,7 +26,7 @@ module Collector
         end
       end
 
-      def sparql_to_count options
+      def sparql_to_count _options
         <<~"SPARQL"
           SELECT (COUNT(*) AS ?count)
           WHERE {

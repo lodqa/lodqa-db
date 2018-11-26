@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class LabelCollectorTest < ActiveSupport::TestCase
@@ -8,7 +10,7 @@ class LabelCollectorTest < ActiveSupport::TestCase
 
   test 'that it be able to get all label' do
     Collector::LabelCollector.get 'http://ep.lodqa.org/qald-biomed/query' do |labels|
-      assert labels.count > 0
+      assert labels.count.positive?
       assert labels.first.is_a?(Array)
       assert labels.first[0].is_a?(String)
       assert labels.first[0].is_a?(String)
@@ -25,7 +27,7 @@ class LabelCollectorTest < ActiveSupport::TestCase
   test 'that it be able to get all label with a large offset_size' do
     Collector::LabelCollector.get 'http://ep.lodqa.org/qald-biomed/query',
                                   offset_size: 50_000 do |labels|
-      assert labels.count > 0
+      assert labels.count.positive?
     end
   end
 end
