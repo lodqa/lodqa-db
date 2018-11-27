@@ -7,10 +7,10 @@ class LexicalIndexRequestsController < ApplicationController
     target = Target.find_by!(name: target_id)
     return head :forbidden unless target.user == current_user
 
-    job = Job.for_lexical_index_job(target_id).first
-    return head :conflict if job&.alive?
+    request = target.lexical_index_request
+    return head :conflict if request&.alive?
 
-    Job.queue_lexical_index_job! target_id
+    LexicalIndexRequest.queue_lexical_index_request! target
     LexicalIndexJob.perform_later target
 
     head :no_content

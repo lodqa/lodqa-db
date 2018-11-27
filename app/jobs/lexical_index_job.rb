@@ -4,8 +4,8 @@ class LexicalIndexJob < ActiveJob::Base
   queue_as :default
 
   def perform target
-    job = Job.for_lexical_index_job(target.name).first
-    job.run!
+    request = target.lexical_index_request
+    request.run!
 
     Collector::LabelCollector.get target.endpoint_url do |labels|
       Label.append target.name, labels
@@ -21,13 +21,13 @@ class LexicalIndexJob < ActiveJob::Base
       Predicate.append target.name, predicate
     end
 
-    job.finish!
+    request.finish!
   rescue StandardError => e
     bc = ActiveSupport::BacktraceCleaner.new
     bc.add_silencer { |line| line =~ /webrick|gems/ }
     logger.debug message: e.message,
                  class: e.class.to_s,
                  trace: bc.clean(e.backtrace)
-    Job.abort_lexical_index_job! target.name, e
+    LexicalIndexRequest.abort_lexical_index_request! target, e
   end
 end

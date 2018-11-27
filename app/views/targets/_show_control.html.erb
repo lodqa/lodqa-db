@@ -9,12 +9,12 @@
   <span class='button'><%= link_to 'Delete', @target, method: :delete, data: { confirm: 'Are you sure?' } %></span>
   <span class='button'>
     <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
-    <a href="#job-error-detail" rel="facebox"><%=raw @lexical_index_job&.state_icon_for_view %></a>
+    <a href="#request-error-detail" rel="facebox"><%=raw @lexical_index_request&.state_icon_for_view %></a>
   </span>
-  <% if @lexical_index_job&.error? %>
-  <div id="job-error-detail" class="help">
+  <% if @lexical_index_request&.error? %>
+  <div id="request-error-detail" class="help">
     <h1>Error detail</h1>
-    <p><%= @lexical_index_job.latest_error %></p>
+    <p><%= @lexical_index_request.latest_error %></p>
   </div>
   <% end %>
 <% end %>

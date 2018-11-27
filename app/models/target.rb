@@ -5,6 +5,7 @@ class Target < ActiveRecord::Base
   friendly_id :name
 
   belongs_to :user
+  has_one :lexical_index_request, primary_key: :name, foreign_key: :target_name
   serialize :ignore_predicates, Array
   serialize :sortal_predicates, Array
   serialize :sample_queries, Array
