@@ -55,4 +55,12 @@ class Target < ActiveRecord::Base
   def instance_dictionary
     label.where.not(url: predicate.select('url')).where.not(url: klass.select('url'))
   end
+
+  def class_dictionary
+    label.where.not(url: predicate.select('url')).where(url: klass.select('url'))
+  end
+
+  def predicate_dictionary
+    label.where(url: predicate.select('url'))
+  end
 end
