@@ -42,3 +42,9 @@ two:
   sample_queries:
     - MyText
     - MyText
+
+one_second:
+  name: one_second
+  user: one
+  endpoint_url: MyString
+  dictionary_url: MyString

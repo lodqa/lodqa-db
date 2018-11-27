@@ -16,6 +16,18 @@ class LexicalIndexRequestsController < ApplicationController
     head :no_content
   end
 
+  def destroy
+    target = Target.find_by!(name: target_id)
+    return head :forbidden unless target.user == current_user
+
+    request = target.lexical_index_request
+    return head :not_found unless request
+
+    request.delete
+
+    redirect_to target
+  end
+
   private
 
   def target_id

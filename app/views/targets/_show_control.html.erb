@@ -11,6 +11,11 @@
     <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
     <a href="#request-error-detail" rel="facebox"><%=raw @lexical_index_request&.state_icon_for_view %></a>
   </span>
+  <% if @lexical_index_request %>
+    <span class='button'>
+      <%= link_to 'Cancel Lexical Index', target_lexical_index_request_path(params[:id]), method: :delete %>
+    </span>
+  <% end %>
   <% if @lexical_index_request&.error? %>
   <div id="request-error-detail" class="help">
     <h1>Error detail</h1>
