@@ -47,7 +47,7 @@ class LexicalIndexRequest < ActiveRecord::Base
   def state_icon_for_view
     case state
     when 'queued'
-      '<i class="request-state fa fa-pase-circle" aria-hidden="true"></i>'
+      '<i class="request-state fa fa-pause-circle" aria-hidden="true"></i>'
     when 'runnig'
       '<i class="request-state fa fa-play-circle" aria-hidden="true"></i>'
     when 'finished'
