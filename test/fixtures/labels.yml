@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+insnace:
+  target_name: one
+  label: one
+  url: http://example.com/1
+
+klass:
+  target_name: one
+  label: klass
+  url: http://example.com/klass
+
+predicate:
+  target_name: one
+  label: predicate
+  url: http://example.com/predicate

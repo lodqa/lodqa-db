@@ -11,4 +11,8 @@ class Label < ActiveRecord::Base
       end
     end
   end
+
+  def to_s
+    "#{label}\t#{url}"
+  end
 end

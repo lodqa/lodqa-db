@@ -6,6 +6,9 @@ class Target < ActiveRecord::Base
 
   belongs_to :user
   has_one :lexical_index_request, primary_key: :name, foreign_key: :target_name
+  has_many :label, primary_key: :name, foreign_key: :target_name
+  has_many :klass, primary_key: :name, foreign_key: :target_name
+  has_many :predicate, primary_key: :name, foreign_key: :target_name
   serialize :ignore_predicates, Array
   serialize :sortal_predicates, Array
   serialize :sample_queries, Array
@@ -47,5 +50,9 @@ class Target < ActiveRecord::Base
 
   def sample_queries_for_view= str
     self.sample_queries = str.split(/[\n\r\t]+/)
+  end
+
+  def instance_dictionary
+    label.where.not(url: predicate.select('url')).where.not(url: klass.select('url'))
   end
 end
