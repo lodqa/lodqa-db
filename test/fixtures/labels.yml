@@ -2,8 +2,8 @@
 
 insnace:
   target_name: one
-  label: one
-  url: http://example.com/1
+  label: label
+  url: http://example.com/label
 
 klass:
   target_name: one

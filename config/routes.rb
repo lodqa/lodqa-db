@@ -4,6 +4,7 @@ LodqaDb::Application.routes.draw do
       get 'names'
     end
     resource :lexical_index_request, only: [:create, :destroy]
+    resource :instance_dictionary, only: :show
   end
 
   devise_for :users
