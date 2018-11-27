@@ -8,7 +8,7 @@
   <span class='button'><%= link_to 'Edit', edit_target_path(@target) %></span>
   <span class='button'><%= link_to 'Delete', @target, method: :delete, data: { confirm: 'Are you sure?' } %></span>
   <span class='button'>
-    <%= link_to 'Lexical Index', target_lexical_index_job_index_path(params[:id]), method: :create %>
+    <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
     <a href="#job-error-detail" rel="facebox"><%=raw @lexical_index_job&.state_icon_for_view %></a>
   </span>
   <% if @lexical_index_job&.error? %>

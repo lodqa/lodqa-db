@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LexicalIndexJobController < ApplicationController
+class LexicalIndexRequestsController < ApplicationController
   before_filter :authenticate_user!, only: [:create]
 
   def create

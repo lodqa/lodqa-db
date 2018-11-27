@@ -3,7 +3,7 @@ LodqaDb::Application.routes.draw do
     collection do
       get 'names'
     end
-    resources :lexical_index_job, only: :create
+    resource :lexical_index_request, only: :create
   end
 
   devise_for :users
