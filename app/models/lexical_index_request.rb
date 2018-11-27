@@ -24,13 +24,17 @@ class LexicalIndexRequest < ActiveRecord::Base
     state == 'error'
   end
 
+  def not_finished?
+    state != 'finished'
+  end
+
   def run!
     self.state = :runnig
     save!
   end
 
   def finish!
-    self.state = :finish
+    self.state = :finished
     save!
   end
 
