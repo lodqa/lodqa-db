@@ -61,5 +61,7 @@ module LodqaDb
             :methods => [:get, :options]
         end
     end
+
+    config.active_job.queue_adapter = :async
   end
 end

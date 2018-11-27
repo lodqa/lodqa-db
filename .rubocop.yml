@@ -18,6 +18,7 @@ Style/MethodDefParentheses:
 AllCops:
   TargetRubyVersion: 2.5
   Exclude:
+    - app/lib/active_job/queue_adapters/async_adapter.rb
     - config.ru
     - config/**/*
     - db/migrate/20150906120054_devise_create_users.rb
