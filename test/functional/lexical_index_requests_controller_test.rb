@@ -20,7 +20,7 @@ class LexicalIndexRequestsControllerTest < ActionController::TestCase
     test 'create a request of my target' do
       stub(LexicalIndexJob).perform_later
       post :create, target_id: @one.name
-      assert_response :success
+      assert_response :redirect
     end
 
     test 'can not create requests of targets other than yourself' do

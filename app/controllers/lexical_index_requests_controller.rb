@@ -13,7 +13,7 @@ class LexicalIndexRequestsController < ApplicationController
     LexicalIndexRequest.queue_lexical_index_request! target
     LexicalIndexJob.perform_later target
 
-    head :no_content
+    redirect_to target
   end
 
   def destroy
