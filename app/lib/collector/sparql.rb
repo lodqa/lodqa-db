@@ -7,21 +7,21 @@ require 'json'
 module Collector
   module SPARQL
     class << self
-      def get_as_json end_point, sparql
-        res = invoke end_point, sparql
+      def get_as_json endpoint_url, sparql
+        res = invoke endpoint_url, sparql
 
-        raise Collector::Error, "SPARQL request error URL: #{end_point}, SPARQL: #{sparql}, STATUS_CODE: #{res.code}, RESPONSE_BODY #{res.body}" unless res.is_a? Net::HTTPSuccess
+        raise Collector::Error, "SPARQL request error URL: #{endpoint_url}, SPARQL: #{sparql}, STATUS_CODE: #{res.code}, RESPONSE_BODY #{res.body}" unless res.is_a? Net::HTTPSuccess
 
         JSON.parse(res.body)['results']['bindings']
       rescue JSON::ParserError
-        raise Collector::Error, "SPARQL endpoint #{end_point} does not return JSON format!"
+        raise Collector::Error, "SPARQL endpoint #{endpoint_url} does not return JSON format!"
       end
 
       private
 
-      def invoke end_point, sparql
+      def invoke endpoint_url, sparql
         query_string = URI.encode_www_form query: sparql, timeout: 60_000
-        uri = URI "#{end_point}?#{query_string}"
+        uri = URI "#{endpoint_url}?#{query_string}"
         request = Net::HTTP::Get.new uri, 'accept' => 'application/sparql-results+json'
         http(uri).request request
       end

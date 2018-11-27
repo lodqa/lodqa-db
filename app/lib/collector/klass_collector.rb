@@ -16,9 +16,9 @@ module Collector
     class << self
       private
 
-      def get_part end_point, offset, limit, options
+      def get_part endpoint_url, offset, limit, options
         sparql = sparql_to_get offset, limit, options
-        r = SPARQL.get_as_json end_point, sparql
+        r = SPARQL.get_as_json endpoint_url, sparql
         r.map { |b| b.dig 'c', 'value' }
       end
 

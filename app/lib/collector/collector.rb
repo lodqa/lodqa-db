@@ -4,33 +4,33 @@ module Collector
   module Collector
     DEFAULT_OFFSET_SIZE = 10_000
 
-    def count end_point, options = nil
-      r = SPARQL.get_as_json end_point, sparql_to_count(options)
+    def count endpoint_url, options = nil
+      r = SPARQL.get_as_json endpoint_url, sparql_to_count(options)
       r[0]&.dig('count', 'value').to_i
     end
 
-    def get end_point, initial_offset: 0, total_count: 0, **options, &block
-      total_count = get_total end_point, total_count, options
-      get_all end_point, initial_offset, total_count, options, &block
+    def get endpoint_url, initial_offset: 0, total_count: 0, **options, &block
+      total_count = get_total endpoint_url, total_count, options
+      get_all endpoint_url, initial_offset, total_count, options, &block
     end
 
     private
 
-    def get_total end_point, total_count, _option
-      total_count ||= count end_point
+    def get_total endpoint_url, total_count, _option
+      total_count ||= count endpoint_url
       Rails.logger.debug "total #{total_count}"
 
       total_count
     end
 
-    def get_all end_point, initial_offset, total_count, options, &block
+    def get_all endpoint_url, initial_offset, total_count, options, &block
       offset_size = DEFAULT_OFFSET_SIZE
       done_count = initial_offset
       loop do
         start_at = Time.now
 
         # Adjust the offset value according to the number of actually taken.
-        done_count, offset_size = get_a_part end_point, done_count, offset_size, options, &block
+        done_count, offset_size = get_a_part endpoint_url, done_count, offset_size, options, &block
 
         show_plan_to_complete start_at, total_count, done_count, offset_size
 
@@ -53,8 +53,8 @@ module Collector
       [unit_time, to_complete]
     end
 
-    def get_a_part end_point, done_count, offset_size, options
-      labels = get_part end_point, done_count, offset_size, options
+    def get_a_part endpoint_url, done_count, offset_size, options
+      labels = get_part endpoint_url, done_count, offset_size, options
       yield labels
 
       [done_count + labels.count, labels.count]
