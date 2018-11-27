@@ -9,15 +9,15 @@ module Collector
       r[0]&.dig('count', 'value').to_i
     end
 
-    def get endpoint_url, initial_offset: 0, total_count: 0, **options, &block
+    def get endpoint_url, initial_offset: 0, total_count: nil, **options, &block
       total_count = get_total endpoint_url, total_count, options
       get_all endpoint_url, initial_offset, total_count, options, &block
     end
 
     private
 
-    def get_total endpoint_url, total_count, _option
-      total_count ||= count endpoint_url
+    def get_total endpoint_url, total_count, options
+      total_count ||= count endpoint_url, options
       Rails.logger.debug "total #{total_count}"
 
       total_count
