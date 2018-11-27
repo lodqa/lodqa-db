@@ -20,6 +20,8 @@
     <% end %>
     <% if @lexical_index_request.finished? %>
       <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_instance_dictionary_path(params[:id], format: :csv), title: 'instance dictionory' %>
+      <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_class_dictionary_path(params[:id], format: :csv), title: 'class dictionory' %>
+      <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_predicate_dictionary_path(params[:id], format: :csv), title: 'predicate dictionory' %>
     <% else %>
       <span class='button'>
         <%= link_to 'Cancel Lexical Index', target_lexical_index_request_path(params[:id]), method: :delete %>

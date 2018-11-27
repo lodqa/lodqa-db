@@ -5,6 +5,8 @@ LodqaDb::Application.routes.draw do
     end
     resource :lexical_index_request, only: [:create, :destroy]
     resource :instance_dictionary, only: :show
+    resource :class_dictionary, only: :show
+    resource :predicate_dictionary, only: :show
   end
 
   devise_for :users
