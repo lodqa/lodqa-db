@@ -11,16 +11,20 @@
     <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
     <a href="#request-error-detail" rel="facebox"><%=raw @lexical_index_request&.state_icon_for_view %></a>
   </span>
-  <% if @lexical_index_request&.not_finished? %>
-    <span class='button'>
-      <%= link_to 'Cancel Lexical Index', target_lexical_index_request_path(params[:id]), method: :delete %>
-    </span>
-  <% end %>
-  <% if @lexical_index_request&.error? %>
-  <div id="request-error-detail" class="help">
-    <h1>Error detail</h1>
-    <p><%= @lexical_index_request.latest_error %></p>
-  </div>
+  <% if @lexical_index_request %>
+    <% if @lexical_index_request.error? %>
+      <div id="request-error-detail" class="help">
+        <h1>Error detail</h1>
+        <p><%= @lexical_index_request.latest_error %></p>
+      </div>
+    <% end %>
+    <% if @lexical_index_request.finished? %>
+      <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_instance_dictionary_path(params[:id], format: :csv), title: 'instance dictionory' %>
+    <% else %>
+      <span class='button'>
+        <%= link_to 'Cancel Lexical Index', target_lexical_index_request_path(params[:id]), method: :delete %>
+      </span>
+    <% end %>
   <% end %>
 <% end %>
 </td>

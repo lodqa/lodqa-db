@@ -24,8 +24,8 @@ class LexicalIndexRequest < ActiveRecord::Base
     state == 'error'
   end
 
-  def not_finished?
-    state != 'finished'
+  def finished?
+    state == 'finished'
   end
 
   def run!
