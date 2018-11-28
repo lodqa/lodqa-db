@@ -2,6 +2,7 @@
 
 require 'net/http'
 require 'json'
+require_relative 'error'
 
 # SPARQL Client
 module Collector
@@ -10,11 +11,11 @@ module Collector
       def get_as_json endpoint_url, sparql
         res = invoke endpoint_url, sparql
 
-        raise Collector::Error, "SPARQL request error URL: #{endpoint_url}, SPARQL: #{sparql}, STATUS_CODE: #{res.code}, RESPONSE_BODY #{res.body}" unless res.is_a? Net::HTTPSuccess
+        raise Error, "SPARQL request error URL: #{endpoint_url}, SPARQL: #{sparql}, STATUS_CODE: #{res.code}, RESPONSE_BODY #{res.body}" unless res.is_a? Net::HTTPSuccess
 
         JSON.parse(res.body)['results']['bindings']
       rescue JSON::ParserError
-        raise Collector::Error, "SPARQL endpoint #{endpoint_url} does not return JSON format!"
+        raise Error, "SPARQL endpoint #{endpoint_url} does not return JSON format!"
       end
 
       private

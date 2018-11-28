@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'sparql.rb'
+
 module Collector
   module Collector
     DEFAULT_OFFSET_SIZE = 10_000

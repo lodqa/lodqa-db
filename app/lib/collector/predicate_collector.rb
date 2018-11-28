@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+# frozen_string_literal: true
+
 require_relative 'collector.rb'
-require_relative 'sparql.rb'
 
 module Collector
   module PredicateCollector
