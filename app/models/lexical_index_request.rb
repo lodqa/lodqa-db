@@ -29,6 +29,15 @@ class LexicalIndexRequest < ActiveRecord::Base
         request.error! error
       end
     end
+
+    def abort_zombie_requests!
+      transaction do
+        where(state: %i[queued running])
+          .to_a
+          .each { |r| r.error! StandardError.new('This request is a zombie because it was alive at the end of the process. It was forcibly aborted.') }
+          .any?
+      end
+    end
   end
 
   def alive?
