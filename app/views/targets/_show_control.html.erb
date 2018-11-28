@@ -7,26 +7,36 @@
 <% if user_signed_in? && @target.editable?(current_user) -%>
   <span class='button'><%= link_to 'Edit', edit_target_path(@target) %></span>
   <span class='button'><%= link_to 'Delete', @target, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-  <span class='button <%= 'button--disabled' if @lexical_index_request_alive %>'>
-    <% if @lexical_index_request_alive %>
-      Lexical Index
-    <% else %>
+  <% unless @lexical_index_request %>
+    <span class='button'>
       <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
-    <% end %>
-    <%=raw @lexical_index_request&.state_icon_for_view %>
-  </span>
-  <% if @lexical_index_request %>
-    <% if @lexical_index_request.error? %>
+    </span>
+  <% else %>
+    <% if @lexical_index_request.alive? %>
+      <span class='button button--disabled'>
+        'Lexical Index'
+        <i class="request-state fa <%= @lexical_index_request.queued? ? 'fa-pause-circle' : 'fa-play-circle' %>" aria-hidden="true"></i>
+      </span>
+      <span class='button'>
+        <%= link_to 'Cancel Lexical Index', target_lexical_index_request_path(params[:id]), method: :delete %>
+      </span>
+    <% elsif @lexical_index_request.finished? %>
+      <span class='button'>
+        <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
+        <i class="request-state fa fa-check-circle" aria-hidden="true"></i>
+      </span>
+      <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_instance_dictionary_path(params[:id], format: :csv), title: 'instance dictionory' %>
+      <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_class_dictionary_path(params[:id], format: :csv), title: 'class dictionory' %>
+      <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_predicate_dictionary_path(params[:id], format: :csv), title: 'predicate dictionory' %>
+    <% elsif @lexical_index_request.error? %>
+      <span class='button'>
+        <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
+        <a href="#request-error-detail" rel="facebox"><i class="request-state request-state--error fa fa-exclamation-circle" aria-hidden="true"></i></a>
+      </span>
       <div id="request-error-detail" class="help">
         <h1>Error detail</h1>
         <p><%= @lexical_index_request.latest_error %></p>
       </div>
-    <% end %>
-    <% if @lexical_index_request.finished? %>
-      <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_instance_dictionary_path(params[:id], format: :csv), title: 'instance dictionory' %>
-      <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_class_dictionary_path(params[:id], format: :csv), title: 'class dictionory' %>
-      <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_predicate_dictionary_path(params[:id], format: :csv), title: 'predicate dictionory' %>
-    <% else %>
       <span class='button'>
         <%= link_to 'Cancel Lexical Index', target_lexical_index_request_path(params[:id]), method: :delete %>
       </span>

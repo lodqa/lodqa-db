@@ -35,6 +35,10 @@ class LexicalIndexRequest < ActiveRecord::Base
     state == 'queued' || state == 'runnig'
   end
 
+  def queued?
+    state == 'queued'
+  end
+
   def error?
     state == 'error'
   end
@@ -62,19 +66,6 @@ class LexicalIndexRequest < ActiveRecord::Base
       self.state = :error
       self.latest_error = err.message
       save!
-    end
-  end
-
-  def state_icon_for_view
-    case state
-    when 'queued'
-      '<i class="request-state fa fa-pause-circle" aria-hidden="true"></i>'
-    when 'runnig'
-      '<i class="request-state fa fa-play-circle" aria-hidden="true"></i>'
-    when 'finished'
-      '<i class="request-state fa fa-check-circle" aria-hidden="true"></i>'
-    when 'error'
-      '<a href="#request-error-detail" rel="facebox"><i class="request-state request-state--error fa fa-exclamation-circle" aria-hidden="true"></i></a>'
     end
   end
 end
