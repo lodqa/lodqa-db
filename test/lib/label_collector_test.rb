@@ -3,13 +3,17 @@
 require 'test_helper'
 
 class LabelCollectorTest < ActiveSupport::TestCase
+  setup do
+    @endpoint = Collector::Endpoint.new 'http://ep.lodqa.org/qald-biomed/query'
+  end
+
   test 'that it be able to count of labels' do
-    count = Collector::LabelCollector.count 'http://ep.lodqa.org/qald-biomed/query'
+    count = Collector::LabelCollector.count @endpoint
     assert count.is_a? Integer
   end
 
   test 'that it be able to get all label' do
-    Collector::LabelCollector.get 'http://ep.lodqa.org/qald-biomed/query' do |labels|
+    Collector::LabelCollector.get @endpoint do |labels|
       assert labels.count.positive?
       assert labels.first.is_a?(Array)
       assert labels.first[0].is_a?(String)
@@ -18,14 +22,14 @@ class LabelCollectorTest < ActiveSupport::TestCase
   end
 
   test 'that it get no label with a too big initial_offset' do
-    Collector::LabelCollector.get 'http://ep.lodqa.org/qald-biomed/query',
+    Collector::LabelCollector.get @endpoint,
                                   initial_offset: 100_000 do |labels|
       assert_equal 0, labels.count
     end
   end
 
   test 'that it be able to get all label with a large offset_size' do
-    Collector::LabelCollector.get 'http://ep.lodqa.org/qald-biomed/query',
+    Collector::LabelCollector.get @endpoint,
                                   offset_size: 50_000 do |labels|
       assert labels.count.positive?
     end

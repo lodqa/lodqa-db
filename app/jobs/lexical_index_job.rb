@@ -7,16 +7,18 @@ class LexicalIndexJob < ActiveJob::Base
     request = target.lexical_index_request
     request.run!
 
-    Collector::LabelCollector.get target.endpoint_url do |labels|
+    endpoint = Collector::Endpoint.new target.endpoint_url
+
+    Collector::LabelCollector.get endpoint do |labels|
       Label.append target.name, labels
     end
 
-    Collector::KlassCollector.get target.endpoint_url,
+    Collector::KlassCollector.get endpoint,
                                   sortal_predicates: target.sortal_predicates do |klasses|
       Klass.append target.name, klasses
     end
 
-    Collector::PredicateCollector.get target.endpoint_url,
+    Collector::PredicateCollector.get endpoint,
                                       ignore_predicates: target.ignore_predicates do |predicate|
       Predicate.append target.name, predicate
     end

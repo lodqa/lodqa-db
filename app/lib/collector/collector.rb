@@ -1,38 +1,36 @@
 # frozen_string_literal: true
 
-require_relative 'sparql.rb'
-
 module Collector
   module Collector
     DEFAULT_OFFSET_SIZE = 10_000
 
-    def count endpoint_url, options = nil
-      r = SPARQL.get_as_json endpoint_url, sparql_to_count(options)
+    def count endpoint, options = nil
+      r = endpoint.get_as_json sparql_to_count(options)
       r[0]&.dig('count', 'value').to_i
     end
 
-    def get endpoint_url, initial_offset: 0, total_count: nil, **options, &block
-      total_count = get_total endpoint_url, total_count, options
-      get_all endpoint_url, initial_offset, total_count, options, &block
+    def get endpoint, initial_offset: 0, total_count: nil, **options, &block
+      total_count = get_total endpoint, total_count, options
+      get_all endpoint, initial_offset, total_count, options, &block
     end
 
     private
 
-    def get_total endpoint_url, total_count, options
-      total_count ||= count endpoint_url, options
+    def get_total endpoint, total_count, options
+      total_count ||= count endpoint, options
       Rails.logger.debug "total #{total_count}"
 
       total_count
     end
 
-    def get_all endpoint_url, initial_offset, total_count, options, &block
+    def get_all endpoint, initial_offset, total_count, options, &block
       offset_size = DEFAULT_OFFSET_SIZE
       done_count = initial_offset
       loop do
         start_at = Time.now
 
         # Adjust the offset value according to the number of actually taken.
-        done_count, offset_size = get_a_part endpoint_url, done_count, offset_size, options, &block
+        done_count, offset_size = get_a_part endpoint, done_count, offset_size, options, &block
 
         show_plan_to_complete start_at, total_count, done_count, offset_size
 
@@ -40,16 +38,16 @@ module Collector
       end
     end
 
-    def get_a_part endpoint_url, done_count, offset_size, options
-      labels = get_part endpoint_url, done_count, offset_size, options
+    def get_a_part endpoint, done_count, offset_size, options
+      labels = get_part endpoint, done_count, offset_size, options
       yield labels
 
       [done_count + labels.count, labels.count]
     end
 
-    def get_part endpoint_url, offset, limit, options
+    def get_part endpoint, offset, limit, options
       sparql = sparql_to_get offset, limit, options
-      r = SPARQL.get_as_json endpoint_url, sparql
+      r = endpoint.get_as_json sparql
       r.map(&converter)
     end
 
