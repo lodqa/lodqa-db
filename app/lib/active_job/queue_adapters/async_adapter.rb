@@ -1,4 +1,3 @@
-require 'securerandom'
 require 'concurrent/scheduled_task'
 require 'concurrent/executor/thread_pool_executor'
 require 'concurrent/utility/processor_counter'
@@ -66,7 +65,6 @@ module ActiveJob
       # may creep in undetected.
       class JobWrapper #:nodoc:
         def initialize(job)
-          #job.provider_job_id = SecureRandom.uuid
           @job_data = job.serialize
         end
 
