@@ -41,6 +41,7 @@ class TargetsController < ApplicationController
   def show
     @target = Target.find_by!(name: params[:id])
     @lexical_index_request = @target.lexical_index_request
+    @lexical_index_request_alive = @lexical_index_request&.alive?
 
     respond_to do |format|
       format.html # show.html.erb

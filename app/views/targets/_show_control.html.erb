@@ -7,8 +7,12 @@
 <% if user_signed_in? && @target.editable?(current_user) -%>
   <span class='button'><%= link_to 'Edit', edit_target_path(@target) %></span>
   <span class='button'><%= link_to 'Delete', @target, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-  <span class='button'>
-    <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
+  <span class='button <%= 'button--disabled' if @lexical_index_request_alive %>'>
+    <% if @lexical_index_request_alive %>
+      Lexical Index
+    <% else %>
+      <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
+    <% end %>
     <a href="#request-error-detail" rel="facebox"><%=raw @lexical_index_request&.state_icon_for_view %></a>
   </span>
   <% if @lexical_index_request %>
