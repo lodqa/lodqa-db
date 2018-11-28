@@ -30,7 +30,7 @@ class LexicalIndexRequestsController < ApplicationController
     request = target.lexical_index_request
     return head :not_found unless request
 
-    request.delete
+    request.cancel!
 
     redirect_to target
   end

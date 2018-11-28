@@ -11,6 +11,14 @@
     <span class='button'>
       <%= link_to 'Cancel Lexical Index', target_lexical_index_request_path(params[:id]), method: :delete %>
     </span>
+  <% elsif @lexical_index_request.canceling? %>
+    <span class='button button--disabled'>
+      Lexical Index
+      <i class="request-state fa 'fa-play-circle'" aria-hidden="true"></i>
+    </span>
+    <span class='button button--disabled'>
+      Canceling Lexical Index
+    </span>
   <% elsif @lexical_index_request.finished? %>
     <span class='button'>
       <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>

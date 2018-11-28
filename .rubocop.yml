@@ -1,13 +1,19 @@
 Metrics/AbcSize:
-  Max: 30
+  Max: 41
+
+Metrics/CyclomaticComplexity:
+  Max: 9
 
 Metrics/MethodLength:
-  Max: 22
+  Max: 35
 
 Metrics/LineLength:
   Exclude:
     - test/**/*_test.rb
   Max: 219
+
+Metrics/PerceivedComplexity:
+  Max: 9
 
 Style/Documentation:
   Enabled: false

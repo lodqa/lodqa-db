@@ -43,7 +43,7 @@ class LexicalIndexRequest < ActiveRecord::Base
 
     def abort_zombie_requests!
       transaction do
-        where(state: %i[queued running])
+        where(state: %i[queued running canceling])
           .to_a
           .each { |r| r.error! StandardError.new('This request is a zombie because it was alive at the end of the process. It was forcibly aborted.') }
           .any?
@@ -57,6 +57,17 @@ class LexicalIndexRequest < ActiveRecord::Base
 
   def queued?
     state == 'queued'
+  end
+
+  def running?
+    state == 'running'
+  end
+
+  def canceling?
+    # Since this method is called from job, we use transactions to release the DB connection immediately.
+    transaction do
+      state == 'canceling'
+    end
   end
 
   def error?
@@ -74,6 +85,19 @@ class LexicalIndexRequest < ActiveRecord::Base
     end
   end
 
+  def cancel!
+    transaction do
+      if running?
+        self.state = :canceling
+        save!
+      elsif canceling?
+        # do nothing
+      else
+        delete
+      end
+    end
+  end
+
   def finish!
     transaction do
       self.state = :finished
@@ -87,5 +111,11 @@ class LexicalIndexRequest < ActiveRecord::Base
       self.latest_error = err.message
       save!
     end
+  end
+
+  # Forcibly release the connection
+  def delete *records
+    super(*records)
+    self.class.connection_pool.checkin self.class.connection
   end
 end
