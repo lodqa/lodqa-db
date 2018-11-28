@@ -10,7 +10,7 @@ class LexicalIndexRequestsController < ApplicationController
     request = target.lexical_index_request
     return head :conflict if request&.alive?
 
-    LexicalIndexRequest.queue_lexical_index_request! target
+    LexicalIndexRequest.enqueue! target
     LexicalIndexJob.perform_later target
 
     redirect_to target

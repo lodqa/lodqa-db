@@ -4,13 +4,13 @@ class LexicalIndexRequest < ActiveRecord::Base
   scope :request_of, ->(target) { where target_name: target.name }
 
   class << self
-    def queue_lexical_index_request! target
+    def enqueue! target
       request = request_of(target).first_or_initialize
       request.state = :queued
       request.save!
     end
 
-    def abort_lexical_index_request! target, error
+    def abort! target, error
       request = request_of(target).first_or_initialize
       request.error! error
     end
