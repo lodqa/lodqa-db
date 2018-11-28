@@ -10,6 +10,8 @@ class LexicalIndexRequest < ActiveRecord::Base
       request.save!
     end
 
+    # This request model may be deleted while executing the job.
+    # In that case you will have to rebuild the model.
     def abort! target, error
       request = request_of(target).first_or_initialize
       request.error! error
