@@ -5,9 +5,18 @@ class LexicalIndexRequest < ActiveRecord::Base
 
   class << self
     def enqueue! target
-      request = request_of(target).first_or_initialize
-      request.state = :queued
-      request.save!
+      transaction do
+        request = target.lexical_index_request
+
+        if request
+          return false if request.alive?
+        else
+          request = request_of(target).build
+        end
+
+        request.state = :queued
+        request.save!
+      end
     end
 
     # This request model may be deleted while executing the job.

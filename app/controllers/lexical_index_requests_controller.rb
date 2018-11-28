@@ -6,11 +6,8 @@ class LexicalIndexRequestsController < ApplicationController
   def create
     target = Target.find_by!(name: target_id)
     return head :forbidden unless target.user == current_user
+    return head :conflict unless LexicalIndexRequest.enqueue! target
 
-    request = target.lexical_index_request
-    return head :conflict if request&.alive?
-
-    LexicalIndexRequest.enqueue! target
     LexicalIndexJob.perform_later target
 
     redirect_to target
