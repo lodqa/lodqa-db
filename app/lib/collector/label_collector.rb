@@ -16,15 +16,6 @@ module Collector
     class << self
       private
 
-      def get_part endpoint_url, offset, limit, _options
-        r = SPARQL.get_as_json endpoint_url, sparql_to_get(offset, limit)
-        r.map do |b|
-          l = b.dig 'l', 'value'
-          x = b.dig 'x', 'value'
-          [l, x]
-        end
-      end
-
       def sparql_to_count _options
         <<~"SPARQL"
           SELECT (COUNT(*) AS ?count)
@@ -34,7 +25,7 @@ module Collector
         SPARQL
       end
 
-      def sparql_to_get offset, limit
+      def sparql_to_get offset, limit, _options
         <<~"SPARQL"
           SELECT ?l ?x
           WHERE {
@@ -43,6 +34,14 @@ module Collector
           OFFSET #{offset}
           LIMIT #{limit}
         SPARQL
+      end
+
+      def converter
+        lambda { |b|
+          l = b.dig 'l', 'value'
+          x = b.dig 'x', 'value'
+          [l, x]
+        }
       end
     end
   end

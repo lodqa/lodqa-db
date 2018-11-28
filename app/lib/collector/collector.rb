@@ -40,6 +40,19 @@ module Collector
       end
     end
 
+    def get_a_part endpoint_url, done_count, offset_size, options
+      labels = get_part endpoint_url, done_count, offset_size, options
+      yield labels
+
+      [done_count + labels.count, labels.count]
+    end
+
+    def get_part endpoint_url, offset, limit, options
+      sparql = sparql_to_get offset, limit, options
+      r = SPARQL.get_as_json endpoint_url, sparql
+      r.map(&converter)
+    end
+
     def show_plan_to_complete start_at, total_count, done_count, acquired_count
       unit_time, to_complete = calc_remaining_time start_at, total_count, done_count, acquired_count
       unit = name.split('::').last.sub('Collector', '').downcase.pluralize
@@ -53,13 +66,6 @@ module Collector
       to_complete = (total_count - done_count) / acquired_count * unit_time
 
       [unit_time, to_complete]
-    end
-
-    def get_a_part endpoint_url, done_count, offset_size, options
-      labels = get_part endpoint_url, done_count, offset_size, options
-      yield labels
-
-      [done_count + labels.count, labels.count]
     end
   end
 end

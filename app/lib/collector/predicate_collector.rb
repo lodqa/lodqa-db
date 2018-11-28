@@ -15,11 +15,6 @@ module Collector
     class << self
       private
 
-      def get_part endpoint_url, offset, limit, options
-        r = SPARQL.get_as_json endpoint_url, sparql_to_get(offset, limit, options)
-        r.map { |b| b.dig 'p', 'value' }
-      end
-
       # The bio2rdf does not timeout if group by clause is attached.
       # The reason is unknown, but Virtuoso uses the Group by clause to make SPARQL run faster
       def sparql_to_count options
@@ -54,6 +49,10 @@ module Collector
 
       def ignore_predicates_from options
         IGNORE_PREDICATES + options&.[](:ignore_predicates).to_a
+      end
+
+      def converter
+        ->(b) { b.dig 'p', 'value' }
       end
     end
   end

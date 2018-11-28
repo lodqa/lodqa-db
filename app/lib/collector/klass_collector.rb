@@ -15,12 +15,6 @@ module Collector
     class << self
       private
 
-      def get_part endpoint_url, offset, limit, options
-        sparql = sparql_to_get offset, limit, options
-        r = SPARQL.get_as_json endpoint_url, sparql
-        r.map { |b| b.dig 'c', 'value' }
-      end
-
       def sparql_to_count options
         sortal_predicates = sortal_predicates_from options
 
@@ -51,6 +45,10 @@ module Collector
         return SORTAL_PREDICATES unless options&.[](:sortal_predicates)&.any?
 
         options&.[](:sortal_predicates)
+      end
+
+      def converter
+        ->(b) { b.dig 'c', 'value' }
       end
     end
   end
