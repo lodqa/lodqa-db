@@ -2,6 +2,7 @@
 
 class Predicate < ActiveRecord::Base
   include AutoReleaseTransaction
+  include AcquiredCount
 
   def self.append target_name, predicates
     transaction do

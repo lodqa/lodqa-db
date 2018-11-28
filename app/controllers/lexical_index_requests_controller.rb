@@ -13,6 +13,16 @@ class LexicalIndexRequestsController < ApplicationController
     redirect_to target
   end
 
+  def update
+    target = Target.find_by!(name: target_id)
+    return head :forbidden unless target.user == current_user
+    return head :conflict unless LexicalIndexRequest.resume! target
+
+    ResumeLexicalIndexJob.perform_later target
+
+    redirect_to target
+  end
+
   def destroy
     target = Target.find_by!(name: target_id)
     return head :forbidden unless target.user == current_user

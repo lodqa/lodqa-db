@@ -3,7 +3,7 @@ LodqaDb::Application.routes.draw do
     collection do
       get 'names'
     end
-    resource :lexical_index_request, only: [:create, :destroy]
+    resource :lexical_index_request, only: [:create, :update, :destroy]
     resource :instance_dictionary, only: :show
     resource :class_dictionary, only: :show
     resource :predicate_dictionary, only: :show

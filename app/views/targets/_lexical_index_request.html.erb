@@ -21,7 +21,7 @@
     <%= link_to raw('<i class="request-state fa fa-book" aria-hidden="true"></i>'), target_predicate_dictionary_path(params[:id], format: :csv), title: 'predicate dictionory' %>
   <% elsif @lexical_index_request.error? %>
     <span class='button'>
-      <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
+      <%= link_to 'Resume Lexical Index', target_lexical_index_request_path(params[:id]), method: :put %>
       <a href="#request-error-detail" rel="facebox">
         <i class="request-state request-state--error fa fa-exclamation-circle" aria-hidden="true"></i>
       </a>

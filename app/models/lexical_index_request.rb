@@ -21,6 +21,17 @@ class LexicalIndexRequest < ActiveRecord::Base
       end
     end
 
+    def resume! target
+      transaction do
+        request = target.lexical_index_request
+
+        return false unless request&.error?
+
+        request.state = :queued
+        request.save!
+      end
+    end
+
     # This request model may be deleted while executing the job.
     # In that case you will have to rebuild the model.
     def abort! target, error

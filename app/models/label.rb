@@ -2,6 +2,7 @@
 
 class Label < ActiveRecord::Base
   include AutoReleaseTransaction
+  include AcquiredCount
 
   def self.append target_name, labels
     transaction do

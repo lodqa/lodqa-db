@@ -2,6 +2,7 @@
 
 class Klass < ActiveRecord::Base
   include AutoReleaseTransaction
+  include AcquiredCount
 
   def self.append target_name, klasses
     transaction do
