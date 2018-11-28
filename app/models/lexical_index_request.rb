@@ -32,7 +32,7 @@ class LexicalIndexRequest < ActiveRecord::Base
   end
 
   def alive?
-    state == 'queued' || state == 'runnig'
+    state == 'queued' || state == 'running'
   end
 
   def queued?
@@ -49,7 +49,7 @@ class LexicalIndexRequest < ActiveRecord::Base
 
   def run!
     transaction do
-      self.state = :runnig
+      self.state = :running
       save!
     end
   end
