@@ -74,7 +74,7 @@ class LexicalIndexRequest < ActiveRecord::Base
     when 'finished'
       '<i class="request-state fa fa-check-circle" aria-hidden="true"></i>'
     when 'error'
-      '<i class="request-state request-state--error fa fa-exclamation-circle" aria-hidden="true"></i>'
+      '<a href="#request-error-detail" rel="facebox"><i class="request-state request-state--error fa fa-exclamation-circle" aria-hidden="true"></i></a>'
     end
   end
 end

@@ -13,7 +13,7 @@
     <% else %>
       <%= link_to 'Lexical Index', target_lexical_index_request_path(params[:id]), method: :create %>
     <% end %>
-    <a href="#request-error-detail" rel="facebox"><%=raw @lexical_index_request&.state_icon_for_view %></a>
+    <%=raw @lexical_index_request&.state_icon_for_view %>
   </span>
   <% if @lexical_index_request %>
     <% if @lexical_index_request.error? %>
