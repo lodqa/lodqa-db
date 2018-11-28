@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Predicate < ActiveRecord::Base
+  include AutoReleaseTransaction
+
   def self.append target_name, predicates
     transaction do
       predicates.each do |url|

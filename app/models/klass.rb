@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Klass < ActiveRecord::Base
+  include AutoReleaseTransaction
+
   def self.append target_name, klasses
     transaction do
       klasses.each do |url|

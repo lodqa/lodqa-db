@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Label < ActiveRecord::Base
+  include AutoReleaseTransaction
+
   def self.append target_name, labels
     transaction do
       labels.each do |label, url|
