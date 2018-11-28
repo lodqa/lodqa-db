@@ -3,6 +3,7 @@
 class Klass < ActiveRecord::Base
   include AutoReleaseTransaction
   include AcquiredCount
+  include CleanGarbage
 
   def self.append target_name, klasses
     transaction do

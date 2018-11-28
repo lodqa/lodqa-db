@@ -9,15 +9,18 @@ class LexicalIndexJob < ActiveJob::Base
 
     endpoint = Collector::Endpoint.new target.endpoint_url
 
+    Label.clean_gabage target.name
     Collector::LabelCollector.get endpoint do |labels|
       Label.append target.name, labels
     end
 
+    Klass.clean_gabage target.name
     Collector::KlassCollector.get endpoint,
                                   sortal_predicates: target.sortal_predicates do |klasses|
       Klass.append target.name, klasses
     end
 
+    Predicate.clean_gabage target.name
     Collector::PredicateCollector.get endpoint,
                                       ignore_predicates: target.ignore_predicates do |predicate|
       Predicate.append target.name, predicate
