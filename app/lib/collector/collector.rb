@@ -23,26 +23,23 @@ module Collector
       total_count
     end
 
-    def get_all endpoint, initial_offset, total_count, options, &block
+    def get_all endpoint, initial_offset, total_count, options
       offset_size = DEFAULT_OFFSET_SIZE
       done_count = initial_offset
       loop do
         start_at = Time.now
 
-        # Adjust the offset value according to the number of actually taken.
-        done_count, offset_size = get_a_part endpoint, done_count, offset_size, options, &block
+        labels = get_part endpoint, done_count, offset_size, options
 
-        show_plan_to_complete start_at, total_count, done_count, offset_size
+        done_count += labels.count
+
+        # Adjust the offset value according to the number of actually taken.
+        offset_size = labels.count
+
+        yield labels, Statistics.new(type, { start_at: start_at, end_at: Time.now }, total_count, done_count, labels.count)
 
         break if done_count >= total_count
       end
-    end
-
-    def get_a_part endpoint, done_count, offset_size, options
-      labels = get_part endpoint, done_count, offset_size, options
-      yield labels
-
-      [done_count + labels.count, labels.count]
     end
 
     def get_part endpoint, offset, limit, options
@@ -51,19 +48,8 @@ module Collector
       r.map(&converter)
     end
 
-    def show_plan_to_complete start_at, total_count, done_count, acquired_count
-      unit_time, to_complete = calc_remaining_time start_at, total_count, done_count, acquired_count
-      unit = name.split('::').last.sub('Collector', '').downcase.pluralize
-      Rails.logger.debug "#{done_count} #{unit} were collected. #{unit_time.floor}s per SPARQL. It will be completed in #{(to_complete / 3600).floor}h #{((to_complete % 3600) / 60).floor}m #{(to_complete % 60).floor}s."
-    end
-
-    def calc_remaining_time start_at, total_count, done_count, acquired_count
-      unit_time = Time.now - start_at
-      return [unit_time, 0] if acquired_count.zero?
-
-      to_complete = (total_count - done_count) / acquired_count * unit_time
-
-      [unit_time, to_complete]
+    def type
+      name.split('::').last.sub('Collector', '').downcase.pluralize
     end
   end
 end
