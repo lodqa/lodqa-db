@@ -2,6 +2,8 @@
 
 require 'test_helper'
 
+# Since the implementation of InstanceDictionariesController and PredicateDictionariesController is equal to ClassDictionariesController,
+# we will substitute this test for their tests.
 class ClassDictionariesControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
 
