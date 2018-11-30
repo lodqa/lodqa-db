@@ -7,10 +7,7 @@ class TargetsControllerTest < ActionController::TestCase
 
   setup do
     @target = targets(:one)
-    @target.save!
     sign_in @target.user
-
-    targets(:two).save!
   end
 
   test 'should get names of public targets' do
