@@ -1,7 +1,7 @@
 FROM ruby:2.5.3-alpine
 
 ENV BUILD_PACKAGES="curl-dev ruby-dev build-base linux-headers" \
-    DEV_PACKAGES="zlib-dev libxml2-dev libxslt-dev tzdata yaml-dev sqlite-dev git" \
+    DEV_PACKAGES="zlib-dev libxml2-dev libxslt-dev tzdata yaml-dev sqlite-dev" \
     RUBY_PACKAGES="ruby-json yaml nodejs"
 
 # Update and install base packages and nokogiri gem that requires a
