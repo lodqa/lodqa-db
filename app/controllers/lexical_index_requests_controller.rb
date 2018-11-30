@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class LexicalIndexRequestsController < ApplicationController
+  include TargetNameParams
   before_filter :authenticate_user!, only: [:create]
 
   def create
-    target = Target.find_by!(name: target_id)
+    target = Target.find_by! name: target_name
     return head :forbidden unless target.user == current_user
     return head :conflict unless LexicalIndexRequest.enqueue! target
 
@@ -14,7 +15,7 @@ class LexicalIndexRequestsController < ApplicationController
   end
 
   def update
-    target = Target.find_by!(name: target_id)
+    target = Target.find_by! name: target_name
     return head :forbidden unless target.user == current_user
     return head :conflict unless LexicalIndexRequest.resume! target
 
@@ -24,7 +25,7 @@ class LexicalIndexRequestsController < ApplicationController
   end
 
   def destroy
-    target = Target.find_by!(name: target_id)
+    target = Target.find_by! name: target_name
     return head :forbidden unless target.user == current_user
 
     request = target.lexical_index_request
@@ -33,11 +34,5 @@ class LexicalIndexRequestsController < ApplicationController
     request.cancel!
 
     redirect_to target
-  end
-
-  private
-
-  def target_id
-    params.require(:target_id)
   end
 end
