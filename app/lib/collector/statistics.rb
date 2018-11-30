@@ -11,7 +11,7 @@ module Collector
       @acquired_count = acquired_count
     end
 
-    def calc_remaining_time now
+    def calc_remaining_time now = Time.now
       unit_time = now - @start_at
       return [unit_time, 0] if @acquired_count.zero?
 

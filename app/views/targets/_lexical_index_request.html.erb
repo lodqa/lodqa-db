@@ -6,7 +6,26 @@
   <% if @lexical_index_request.alive? %>
     <span class='button button--disabled'>
       Lexical Index
-      <i class="request-state fa <%= @lexical_index_request.queued? ? 'fa-pause-circle' : 'fa-play-circle' %>" aria-hidden="true"></i>
+      <% if @lexical_index_request.queued? %>
+        <i class="request-state fa fa-pause-circle" aria-hidden="true"></i>
+      <% else %>
+        <a href="#request-to-complete" rel="facebox">
+          <i class="request-state fa fa-play-circle" aria-hidden="true"></i>
+        </a>
+        <div id="request-to-complete" class="help">
+          <h1>Estimated time to complete</h1>
+          <p>
+            <% if @lexical_index_request.estimated_seconds_to_complete %>
+              <%= "It will be completed in" %>
+              <%= "#{(@lexical_index_request.estimated_seconds_to_complete / 3600).floor}h" if (@lexical_index_request.estimated_seconds_to_complete / 3600).floor > 0 %>
+              <%= "#{((@lexical_index_request.estimated_seconds_to_complete % 3600) / 60).floor}m" if ((@lexical_index_request.estimated_seconds_to_complete % 3600) / 60).floor > 0 %>
+              <%= "#{(@lexical_index_request.estimated_seconds_to_complete % 60).floor}s." %>
+            <% else %>
+              Now esitmating...
+            <% end %>
+          </p>
+        </div>
+      <% end %>
     </span>
     <span class='button'>
       <%= link_to 'Cancel Lexical Index', target_lexical_index_request_path(params[:id]), method: :delete %>

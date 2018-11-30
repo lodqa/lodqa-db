@@ -48,6 +48,8 @@ class LexicalIndexJob < ActiveJob::Base
       Label.append target.name, labels
 
       Rails.logger.debug statistics
+
+      target.lexical_index_request.statistics = statistics
     end
   end
 
@@ -59,6 +61,8 @@ class LexicalIndexJob < ActiveJob::Base
       Klass.append target.name, klasses
 
       Rails.logger.debug statistics
+
+      target.lexical_index_request.statistics = statistics
     end
   end
 
@@ -70,6 +74,8 @@ class LexicalIndexJob < ActiveJob::Base
       Predicate.append target.name, predicate
 
       Rails.logger.debug statistics
+
+      target.lexical_index_request.statistics = statistics
     end
   end
 end

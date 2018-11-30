@@ -80,6 +80,7 @@ class LexicalIndexRequest < ActiveRecord::Base
 
   def run!
     transaction do
+      self.estimated_seconds_to_complete = nil
       self.state = :running
       save!
     end
@@ -117,5 +118,13 @@ class LexicalIndexRequest < ActiveRecord::Base
   def delete *records
     super(*records)
     self.class.connection_pool.checkin self.class.connection
+  end
+
+  def statistics= statistics
+    transaction do
+      to_complete = statistics.calc_remaining_time[1]
+      self.estimated_seconds_to_complete = to_complete
+      save!
+    end
   end
 end
