@@ -2,17 +2,18 @@ Metrics/AbcSize:
   Max: 41
 
 Metrics/BlockLength:
+  Max: 34
   Exclude:
     - test/**/*_test.rb
-
-Metrics/ClassLength:
-  Max: 114
 
 Metrics/CyclomaticComplexity:
   Max: 9
 
 Metrics/MethodLength:
   Max: 35
+
+Metrics/ModuleLength:
+  Max: 117
 
 Metrics/LineLength:
   Exclude:
