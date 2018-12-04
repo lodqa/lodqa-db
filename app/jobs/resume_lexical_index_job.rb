@@ -11,7 +11,7 @@ class ResumeLexicalIndexJob < ActiveJob::Base
 
     request.run!
 
-    endpoint = Collector::Endpoint.new target.endpoint_url
+    endpoint = Collector::Endpoint.new target.endpoint_url, target.graph_uri
 
     label_acquired_count = Label.acquired_count target.name
     return if request.delete_if_canceling

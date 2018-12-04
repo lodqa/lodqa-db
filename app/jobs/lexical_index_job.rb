@@ -11,7 +11,7 @@ class LexicalIndexJob < ActiveJob::Base
 
     request.run!
 
-    endpoint = Collector::Endpoint.new target.endpoint_url
+    endpoint = Collector::Endpoint.new target.endpoint_url, target.graph_uri
 
     Label.clean_gabage target.name
     return if request.delete_if_canceling

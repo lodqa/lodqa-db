@@ -4,7 +4,7 @@ require 'test_helper'
 
 class KlassCollectorTest < ActiveSupport::TestCase
   setup do
-    @endpoint = Collector::Endpoint.new 'http://ep.lodqa.org/qald-biomed/query'
+    @endpoint = Collector::Endpoint.new 'http://ep.lodqa.org/qald-biomed/query', nil
   end
 
   test 'that it be able to count of classes' do

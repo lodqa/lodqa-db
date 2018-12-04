@@ -9,7 +9,7 @@ class PredicateCollectorTest < ActiveSupport::TestCase
                        'http://www.w3.org/2002/07/owl#equivalentClass'].freeze
 
   setup do
-    @endpoint = Collector::Endpoint.new 'http://ep.lodqa.org/qald-biomed/query'
+    @endpoint = Collector::Endpoint.new 'http://ep.lodqa.org/qald-biomed/query', nil
   end
 
   test 'that it be able to count of predicates' do

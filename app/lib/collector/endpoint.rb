@@ -7,8 +7,9 @@ require_relative 'error'
 # SPARQL Client
 module Collector
   class Endpoint
-    def initialize endpoint_url
+    def initialize endpoint_url, graph_uri
       @endpoint_url = endpoint_url
+      @graph_uri = graph_uri
     end
 
     def get_as_json sparql
@@ -24,10 +25,18 @@ module Collector
     private
 
     def invoke sparql
-      query_string = URI.encode_www_form query: sparql, timeout: 60_000
-      uri = URI "#{@endpoint_url}?#{query_string}"
+      uri = URI "#{@endpoint_url}?#{query_string_for(sparql)}"
       request = Net::HTTP::Get.new uri, 'accept' => 'application/sparql-results+json'
       http.request request
+    end
+
+    def query_string_for sparql
+      parameters = {
+        query: sparql,
+        timeout: 60_000
+      }
+      parameters['default-graph-uri'] = @graph_uri unless @graph_uri.nil? || @graph_uri.empty?
+      URI.encode_www_form parameters
     end
 
     def http
