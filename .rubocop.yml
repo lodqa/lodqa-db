@@ -5,6 +5,9 @@ Metrics/BlockLength:
   Exclude:
     - test/**/*_test.rb
 
+Metrics/ClassLength:
+  Max: 114
+
 Metrics/CyclomaticComplexity:
   Max: 9
 

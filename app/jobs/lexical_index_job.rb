@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class LexicalIndexJob < ActiveJob::Base
-  include Canceled
   queue_as :default
 
   def perform target
@@ -15,17 +14,17 @@ class LexicalIndexJob < ActiveJob::Base
     endpoint = Collector::Endpoint.new target.endpoint_url
 
     Label.clean_gabage target.name
-    return if canceled? request
+    return if request.delete_if_canceling
 
     collect_label target, endpoint
 
     Klass.clean_gabage target.name
-    return if canceled? request
+    return if request.delete_if_canceling
 
     collect_klass target, endpoint
 
     Predicate.clean_gabage target.name
-    return if canceled? request
+    return if request.delete_if_canceling
 
     collect_predicate target, endpoint
 
@@ -43,7 +42,7 @@ class LexicalIndexJob < ActiveJob::Base
 
   def collect_label target, endpoint
     Collector::LabelCollector.get endpoint do |labels, statistics|
-      break if canceled? target.lexical_index_request
+      break if target.lexical_index_request.delete_if_canceling
 
       Label.append target.name, labels
 
@@ -56,7 +55,7 @@ class LexicalIndexJob < ActiveJob::Base
   def collect_klass target, endpoint
     Collector::KlassCollector.get endpoint,
                                   sortal_predicates: target.sortal_predicates do |klasses, statistics|
-      break if canceled? target.lexical_index_request
+      break if target.lexical_index_request.delete_if_canceling
 
       Klass.append target.name, klasses
 
@@ -69,7 +68,7 @@ class LexicalIndexJob < ActiveJob::Base
   def collect_predicate target, endpoint
     Collector::PredicateCollector.get endpoint,
                                       ignore_predicates: target.ignore_predicates do |predicate, statistics|
-      break if canceled? target.lexical_index_request
+      break if target.lexical_index_request.delete_if_canceling
 
       Predicate.append target.name, predicate
 

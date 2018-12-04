@@ -70,6 +70,15 @@ class LexicalIndexRequest < ActiveRecord::Base
     end
   end
 
+  def delete_if_canceling
+    transaction do
+      delete if reload.canceling?
+    rescue ActiveRecord::RecordNotFound
+      # The request has already been deleted.
+      true
+    end
+  end
+
   def error?
     state == 'error'
   end
@@ -112,12 +121,6 @@ class LexicalIndexRequest < ActiveRecord::Base
       self.latest_error = err.message
       save!
     end
-  end
-
-  # Forcibly release the connection
-  def delete *records
-    super(*records)
-    self.class.connection_pool.checkin self.class.connection
   end
 
   def statistics= statistics
