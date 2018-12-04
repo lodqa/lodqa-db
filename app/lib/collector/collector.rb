@@ -29,14 +29,14 @@ module Collector
       loop do
         start_at = Time.now
 
-        labels = get_part endpoint, done_count, offset_size, options
+        results = get_part endpoint, done_count, offset_size, options
 
-        done_count += labels.count
+        done_count += results.count
 
         # Adjust the offset value according to the number of actually taken.
-        offset_size = labels.count
+        offset_size = results.count
 
-        yield labels, Statistics.new(type, { start_at: start_at, end_at: Time.now }, total_count, done_count, labels.count)
+        yield results, Statistics.new(type, { start_at: start_at, end_at: Time.now }, total_count, done_count, results.count)
 
         break if done_count >= total_count
       end
