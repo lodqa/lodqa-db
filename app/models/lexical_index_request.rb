@@ -130,4 +130,17 @@ class LexicalIndexRequest < ActiveRecord::Base
       save!
     end
   end
+
+  def number_of_triples= count
+    transaction do
+      write_attribute :number_of_triples, count
+      save!
+    end
+  end
+
+  def number_of_triples
+    transaction do
+      read_attribute :number_of_triples
+    end
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181130053554) do
+ActiveRecord::Schema.define(version: 20181204062304) do
 
   create_table "klasses", force: :cascade do |t|
     t.string "target_name", limit: 40,  null: false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20181130053554) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "estimated_seconds_to_complete", limit: 8
+    t.integer  "number_of_triples",             limit: 8
   end
 
   add_index "lexical_index_requests", ["target_name"], name: "index_jobs_on_target_name_and_job_name", unique: true

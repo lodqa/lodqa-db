@@ -13,6 +13,8 @@ class LexicalIndexJob < ActiveJob::Base
 
     endpoint = Collector::Endpoint.new target.endpoint_url, target.graph_uri
 
+    request.number_of_triples = Collector::TripleCollector.count endpoint
+
     Label.clean_gabage target.name
     return if request.delete_if_canceling
 

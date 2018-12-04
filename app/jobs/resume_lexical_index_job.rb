@@ -13,6 +13,9 @@ class ResumeLexicalIndexJob < ActiveJob::Base
 
     endpoint = Collector::Endpoint.new target.endpoint_url, target.graph_uri
 
+    now_count = Collector::TripleCollector.count endpoint
+    raise 'The number of triples has been changed since the last run.' if now_count != request.number_of_triples
+
     label_acquired_count = Label.acquired_count target.name
     return if request.delete_if_canceling
 
