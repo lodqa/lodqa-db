@@ -8,6 +8,7 @@
   <span class='button'><%= link_to 'Edit', edit_target_path(@target) %></span>
   <span class='button'><%= link_to 'Delete', @target, method: :delete, data: { confirm: 'Are you sure?' } %></span>
   <%= render partial: 'lexical_index_request' %>
+  <%= render partial: 'connection_index_request' %>
 <% end %>
 </td>
 <td style="width:20%; text-align:right">

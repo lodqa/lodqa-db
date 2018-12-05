@@ -4,6 +4,7 @@ LodqaDb::Application.routes.draw do
       get 'names'
     end
     resource :lexical_index_request, only: [:create, :update, :destroy]
+    resource :connection_index_request, only: [:create, :update, :destroy]
     resource :instance_dictionary, only: :show
     resource :class_dictionary, only: :show
     resource :predicate_dictionary, only: :show

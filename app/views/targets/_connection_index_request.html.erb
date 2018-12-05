@@ -1,0 +1,63 @@
+<% unless @connection_index_request %>
+  <span class='button'>
+    <%= link_to 'Connection Index', target_connection_index_request_path(params[:id]), method: :create %>
+  </span>
+<% else %>
+  <% if @connection_index_request.alive? %>
+    <span class='button button--disabled'>
+      Connection Index
+      <% if @connection_index_request.queued? %>
+        <i class="request-state fa fa-pause-circle" aria-hidden="true"></i>
+      <% else %>
+        <a href="#request-to-complete" rel="facebox">
+          <i class="request-state fa fa-play-circle" aria-hidden="true"></i>
+        </a>
+        <div id="request-to-complete" class="help">
+          <h1>Estimated time to complete</h1>
+          <p>
+            <% if @connection_index_request.estimated_seconds_to_complete %>
+              <%= "It will be completed in" %>
+              <%= "#{(@connection_index_request.estimated_seconds_to_complete / 3600).floor}h" if (@connection_index_request.estimated_seconds_to_complete / 3600).floor > 0 %>
+              <%= "#{((@connection_index_request.estimated_seconds_to_complete % 3600) / 60).floor}m" if ((@connection_index_request.estimated_seconds_to_complete % 3600) / 60).floor > 0 %>
+              <%= "#{(@connection_index_request.estimated_seconds_to_complete % 60).floor}s." %>
+            <% else %>
+              Now esitmating...
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </span>
+    <span class='button'>
+      <%= link_to 'Cancel Connection Index', target_connection_index_request_path(params[:id]), method: :delete %>
+    </span>
+  <% elsif @connection_index_request.canceling? %>
+    <span class='button button--disabled'>
+      Connection Index
+      <i class="request-state fa 'fa-play-circle'" aria-hidden="true"></i>
+    </span>
+    <span class='button button--disabled'>
+      Canceling Connection Index
+    </span>
+  <% elsif @connection_index_request.finished? %>
+    <span class='button'>
+      <%= link_to 'Connection Index', target_connection_index_request_path(params[:id]), method: :create %>
+      <i class="request-state fa fa-check-circle" aria-hidden="true"></i>
+    </span>
+  <% elsif @connection_index_request.error? %>
+    <span class='button'>
+      <%= link_to 'Resume Connection Index', target_connection_index_request_path(params[:id]), method: :put %>
+      <a href="#request-error-detail" rel="facebox">
+        <i class="request-state request-state--error fa fa-exclamation-circle" aria-hidden="true"></i>
+      </a>
+    </span>
+    <div id="request-error-detail" class="help">
+      <h1>Error detail</h1>
+      <p><%= @connection_index_request.latest_error %></p>
+    </div>
+    <span class='button'>
+      <%= link_to 'Delete Connection Index', target_connection_index_request_path(params[:id]), method: :delete %>
+    </span>
+  <% else %>
+    Bang!
+  <% end %>
+<% end %>
