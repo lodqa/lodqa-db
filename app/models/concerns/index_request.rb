@@ -56,7 +56,7 @@ module IndexRequest
     end
   end
 
-  def delete_if_canceling
+  def delete_if_canceling!
     transaction do
       delete if reload.canceling?
     rescue ActiveRecord::RecordNotFound

@@ -76,13 +76,13 @@ class ConnectionIndexRequestTest < ActiveSupport::TestCase
     sub_test_case 'delete if canceling!' do
       test 'a canceling request is destroyed after elete if state is canceling' do
         request = connection_index_requests(:canceling)
-        assert request.delete_if_canceling
+        assert request.delete_if_canceling!
         assert request.destroyed?
       end
 
       test 'a request with other states stays same state after elete if state is canceling' do
         request = connection_index_requests(:queued)
-        assert_nil request.delete_if_canceling
+        assert_nil request.delete_if_canceling!
         assert request.queued?
       end
     end
