@@ -63,4 +63,39 @@ class Target < ActiveRecord::Base
   def predicate_dictionary
     label.where(url: predicate.select('url'))
   end
+
+  def enqueue! request_klass
+    transaction do
+      request = request_klass.request_of(self).first
+
+      if request
+        return false if request.alive?
+      else
+        request = request_klass.request_of(self).build
+      end
+
+      request.state = :queued
+      request.save!
+    end
+  end
+
+  def resume! request_klass
+    transaction do
+      request = request_klass.request_of(self).first
+
+      return false unless request&.error?
+
+      request.state = :queued
+      request.save!
+    end
+  end
+
+  # This request model may be deleted while executing the job.
+  # In that case you will have to rebuild the model.
+  def abort! request_klass, error
+    transaction do
+      request = request_klass.request_of(self).first_or_initialize
+      request.error! error
+    end
+  end
 end

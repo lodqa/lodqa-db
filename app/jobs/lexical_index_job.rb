@@ -37,7 +37,7 @@ class LexicalIndexJob < ActiveJob::Base
     logger.debug message: e.message,
                  class: e.class.to_s,
                  trace: bc.clean(e.backtrace)
-    LexicalIndexRequest.abort! target, e
+    target.abort! LexicalIndexRequest, e
   end
 
   private

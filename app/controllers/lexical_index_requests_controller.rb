@@ -7,7 +7,7 @@ class LexicalIndexRequestsController < ApplicationController
   def create
     target = Target.find_by! name: target_name
     return head :forbidden unless target.user == current_user
-    return head :conflict unless LexicalIndexRequest.enqueue! target
+    return head :conflict unless target.enqueue! LexicalIndexRequest
 
     LexicalIndexJob.perform_later target
 
@@ -17,7 +17,7 @@ class LexicalIndexRequestsController < ApplicationController
   def update
     target = Target.find_by! name: target_name
     return head :forbidden unless target.user == current_user
-    return head :conflict unless LexicalIndexRequest.resume! target
+    return head :conflict unless target.resume! LexicalIndexRequest
 
     ResumeLexicalIndexJob.perform_later target
 

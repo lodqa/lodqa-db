@@ -102,41 +102,6 @@ module IndexRequest
   end
 
   class_methods do
-    def enqueue! target
-      transaction do
-        request = request_of(target).first
-
-        if request
-          return false if request.alive?
-        else
-          request = request_of(target).build
-        end
-
-        request.state = :queued
-        request.save!
-      end
-    end
-
-    def resume! target
-      transaction do
-        request = request_of(target).first
-
-        return false unless request&.error?
-
-        request.state = :queued
-        request.save!
-      end
-    end
-
-    # This request model may be deleted while executing the job.
-    # In that case you will have to rebuild the model.
-    def abort! target, error
-      transaction do
-        request = request_of(target).first_or_initialize
-        request.error! error
-      end
-    end
-
     def abort_zombie_requests!
       transaction do
         where(state: %i[queued running canceling])
