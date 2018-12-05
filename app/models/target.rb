@@ -6,6 +6,7 @@ class Target < ActiveRecord::Base
 
   belongs_to :user
   has_one :lexical_index_request, primary_key: :name, foreign_key: :target_name
+  has_one :connection_index_request, primary_key: :name, foreign_key: :target_name
   has_many :label, primary_key: :name, foreign_key: :target_name
   has_many :klass, primary_key: :name, foreign_key: :target_name
   has_many :predicate, primary_key: :name, foreign_key: :target_name
