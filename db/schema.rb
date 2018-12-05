@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181205014351) do
+ActiveRecord::Schema.define(version: 20181205045544) do
 
   create_table "connection_index_requests", force: :cascade do |t|
     t.string   "target_name",                   limit: 40,               null: false
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20181205014351) do
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
   end
+
+  create_table "connections", force: :cascade do |t|
+    t.string   "target_name", limit: 40,  null: false
+    t.string   "subject",     limit: 255, null: false
+    t.string   "object",      limit: 255, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "connections", ["target_name", "subject", "object"], name: "index_connections_on_target_name_and_subject_and_object", unique: true
 
   create_table "klasses", force: :cascade do |t|
     t.string "target_name", limit: 40,  null: false
