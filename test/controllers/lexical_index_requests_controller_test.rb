@@ -76,6 +76,7 @@ class LexicalIndexRequestsControllerTest < ActionController::TestCase
     sub_test_case 'delete existing requests' do
       setup do
         request = LexicalIndexRequest.request_of(@one).build
+        request.state = :queued
         request.run!
       end
 

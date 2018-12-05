@@ -39,17 +39,23 @@ class ConnectionIndexRequestTest < ActiveSupport::TestCase
 
   sub_test_case 'satete operations' do
     sub_test_case 'run!' do
-      setup do
-        @request = connection_index_requests :queued
-        @request.run!
-      end
-
       test 'a ruquest is running after run' do
-        assert @request.running?
+        request = connection_index_requests :queued
+        request.run!
+        assert request.running?
       end
 
       test 'the estimated_seconds_to_complete is nil after run' do
-        assert_nil @request.estimated_seconds_to_complete
+        request = connection_index_requests :queued
+        request.run!
+        assert_nil request.estimated_seconds_to_complete
+      end
+
+      test 'raise RequestInvalidStateError if a request with other than queued state runs' do
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:running).run! }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:canceling).run! }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:error).run! }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:finished).run! }
       end
     end
 
@@ -89,9 +95,16 @@ class ConnectionIndexRequestTest < ActiveSupport::TestCase
 
     sub_test_case 'finish!' do
       test 'a request is finished after finish' do
-        request = connection_index_requests(:queued)
+        request = connection_index_requests(:running)
         request.finish!
         assert request.finished?
+      end
+
+      test 'raise RequestInvalidStateError if a request with other than runnnig state finish' do
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:queued).finish! }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:canceling).finish! }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:error).finish! }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:finished).finish! }
       end
     end
 
@@ -114,17 +127,38 @@ class ConnectionIndexRequestTest < ActiveSupport::TestCase
   sub_test_case 'properties' do
     sub_test_case 'statistics' do
       test 'the estimated_seconds_to_complete is set after the statistics is set' do
-        request = connection_index_requests(:queued)
+        request = connection_index_requests(:running)
         request.statistics = Collector::Statistics.new 'type', { start_at: Time.now }, 100, 10, 10
         assert_not_nil request.estimated_seconds_to_complete
+      end
+
+      test 'raise RequestInvalidStateError if a request with other than running state is set statistics' do
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:queued).statistics = nil }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:canceling).statistics = nil }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:error).statistics = nil }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:finished).statistics = nil }
       end
     end
 
     sub_test_case 'number_of_triples' do
       test 'the number_of_triples is set after the number_of_triples is set' do
-        request = connection_index_requests(:queued)
+        request = connection_index_requests(:running)
         request.number_of_triples = 123
         assert_equal 123, request.number_of_triples
+      end
+
+      test 'raise RequestInvalidStateError if a request with other than running state is set number_of_triples' do
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:queued).number_of_triples = nil }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:canceling).number_of_triples = nil }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:error).number_of_triples = nil }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:finished).number_of_triples = nil }
+      end
+
+      test 'raise RequestInvalidStateError if a request with other than running state is get number_of_triples' do
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:queued).number_of_triples }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:canceling).number_of_triples }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:error).number_of_triples }
+        assert_raise(RequestInvalidStateError) { connection_index_requests(:finished).number_of_triples }
       end
     end
   end

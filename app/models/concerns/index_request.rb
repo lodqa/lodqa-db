@@ -37,6 +37,8 @@ module IndexRequest
 
   def run!
     transaction do
+      raise RequestInvalidStateError unless queued?
+
       self.estimated_seconds_to_complete = nil
       self.state = :running
       save!
@@ -67,6 +69,8 @@ module IndexRequest
 
   def finish!
     transaction do
+      raise RequestInvalidStateError unless running?
+
       self.state = :finished
       save!
     end
@@ -82,6 +86,8 @@ module IndexRequest
 
   def statistics= statistics
     transaction do
+      raise RequestInvalidStateError unless running?
+
       to_complete = statistics.calc_remaining_time[1]
       self.estimated_seconds_to_complete = to_complete
       save!
@@ -90,6 +96,8 @@ module IndexRequest
 
   def number_of_triples= count
     transaction do
+      raise RequestInvalidStateError unless running?
+
       write_attribute :number_of_triples, count
       save!
     end
@@ -97,6 +105,8 @@ module IndexRequest
 
   def number_of_triples
     transaction do
+      raise RequestInvalidStateError unless running?
+
       read_attribute :number_of_triples
     end
   end
