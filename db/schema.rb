@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181204062304) do
+ActiveRecord::Schema.define(version: 20181205014351) do
+
+  create_table "connection_index_requests", force: :cascade do |t|
+    t.string   "target_name",                   limit: 40,               null: false
+    t.string   "state",                         limit: 8,                null: false
+    t.string   "latest_error",                  limit: 255, default: "", null: false
+    t.integer  "estimated_seconds_to_complete", limit: 8
+    t.integer  "number_of_triples",             limit: 8
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+  end
 
   create_table "klasses", force: :cascade do |t|
     t.string "target_name", limit: 40,  null: false

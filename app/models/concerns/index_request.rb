@@ -27,15 +27,6 @@ module IndexRequest
     end
   end
 
-  def delete_if_canceling
-    transaction do
-      delete if reload.canceling?
-    rescue ActiveRecord::RecordNotFound
-      # The request has already been deleted.
-      true
-    end
-  end
-
   def error?
     state == 'error'
   end
@@ -62,6 +53,15 @@ module IndexRequest
       else
         delete
       end
+    end
+  end
+
+  def delete_if_canceling
+    transaction do
+      delete if reload.canceling?
+    rescue ActiveRecord::RecordNotFound
+      # The request has already been deleted.
+      true
     end
   end
 

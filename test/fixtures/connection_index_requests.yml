@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+queued:
+  target_name: MyString
+  state: queued
+  latest_error: MyString
+  estimated_seconds_to_complete: 1
+  number_of_triples: 1
+
+running:
+  target_name: MyString
+  state: running
+  latest_error: MyString
+  estimated_seconds_to_complete: 1
+  number_of_triples: 1
+
+canceling:
+  target_name: MyString
+  state: canceling
+  latest_error: MyString
+  estimated_seconds_to_complete: 1
+  number_of_triples: 1
+
+error:
+  target_name: MyString
+  state: error
+  latest_error: MyString
+  estimated_seconds_to_complete: 1
+  number_of_triples: 1
+
+finished:
+  target_name: MyString
+  state: finished
+  latest_error: MyString
+  estimated_seconds_to_complete: 1
+  number_of_triples: 1
