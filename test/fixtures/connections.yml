@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one-one:
+  target_name: conncetion_set_one
+  subject: 1
+  object: 2
+
+two-one:
+  target_name: conncetion_set_two
+  subject: 1
+  object: 2
+
+two-two:
+  target_name: conncetion_set_two
+  subject: 2
+  object: 3
+
+three-one:
+  target_name: conncetion_set_three
+  subject: 1
+  object: 2
+
+three-two:
+  target_name: conncetion_set_three
+  subject: 2
+  object: 2
+
+four-one:
+  target_name: conncetion_set_four
+  subject: 1
+  object: 2
+
+four-two:
+  target_name: conncetion_set_four
+  subject: 1
+  object: 3
