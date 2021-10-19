@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Label < ActiveRecord::Base
+class Label < ApplicationRecord
   include AutoReleaseTransaction
   include AcquiredCount
   include CleanGarbage

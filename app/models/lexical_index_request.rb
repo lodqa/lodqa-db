@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class LexicalIndexRequest < ActiveRecord::Base
+class LexicalIndexRequest < ApplicationRecord
   include IndexRequest
 end

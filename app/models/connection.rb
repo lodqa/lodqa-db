@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Connection < ActiveRecord::Base
+class Connection < ApplicationRecord
   include AutoReleaseTransaction
   include AcquiredCount
   include CleanGarbage

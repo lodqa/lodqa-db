@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Predicate < ActiveRecord::Base
+class Predicate < ApplicationRecord
   include AutoReleaseTransaction
   include AcquiredCount
   include CleanGarbage

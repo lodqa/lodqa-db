@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Target < ActiveRecord::Base
+class Target < ApplicationRecord
   include FriendlyId
   friendly_id :name
 

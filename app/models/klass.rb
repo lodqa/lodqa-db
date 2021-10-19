@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Klass < ActiveRecord::Base
+class Klass < ApplicationRecord
   include AutoReleaseTransaction
   include AcquiredCount
   include CleanGarbage

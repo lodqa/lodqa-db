@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class ConnectionIndexRequest < ActiveRecord::Base
+class ConnectionIndexRequest < ApplicationRecord
   include IndexRequest
 end
