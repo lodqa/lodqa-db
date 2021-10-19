@@ -2,7 +2,7 @@
 
 class ConnectionIndexRequestsController < ApplicationController
   include TargetNameParams
-  before_filter :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:create]
 
   def create
     target = Target.find_by! name: target_name

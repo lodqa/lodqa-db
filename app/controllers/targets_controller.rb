@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TargetsController < ApplicationController
-  before_filter :authenticate_user!, only: %i[new edit destroy]
+  before_action :authenticate_user!, only: %i[new edit destroy]
 
   # GET /targets
   # GET /targets.json
