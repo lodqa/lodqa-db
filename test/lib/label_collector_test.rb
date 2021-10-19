@@ -8,11 +8,13 @@ class LabelCollectorTest < ActiveSupport::TestCase
   end
 
   test 'that it be able to count of labels' do
+    skip 'The endpoint is unable.'
     count = Collector::LabelCollector.count @endpoint
     assert count.is_a? Integer
   end
 
   test 'that it be able to get all label' do
+    skip 'The endpoint is unable.'
     Collector::LabelCollector.get @endpoint do |labels|
       assert labels.count.positive?
       assert labels.first.is_a?(Array)
@@ -22,6 +24,7 @@ class LabelCollectorTest < ActiveSupport::TestCase
   end
 
   test 'that it get no label with a too big initial_offset' do
+    skip 'The endpoint is unable.'
     Collector::LabelCollector.get @endpoint,
                                   initial_offset: 100_000 do |labels|
       assert_equal 0, labels.count
@@ -29,6 +32,7 @@ class LabelCollectorTest < ActiveSupport::TestCase
   end
 
   test 'that it be able to get all label with a large offset_size' do
+    skip 'The endpoint is unable.'
     Collector::LabelCollector.get @endpoint,
                                   offset_size: 50_000 do |labels|
       assert labels.count.positive?
