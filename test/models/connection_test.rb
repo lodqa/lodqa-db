@@ -33,7 +33,7 @@ class ConnectionTest < ActiveSupport::TestCase
 
     test '1-1, 2-2 ,3-3, 2-3 and 3-2 are get from 1-2 1-3 connection' do
       result = Connection.breadth_first_traversal 'conncetion_set_four'
-      assert_equal 3, result.length
+      assert_equal 5, result.length
       assert result.include?('subject' => '1', 'object' => '1')
       assert result.include?('subject' => '2', 'object' => '2')
       assert result.include?('subject' => '3', 'object' => '3')
