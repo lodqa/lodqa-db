@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.0.3'
 gem 'jquery-rails'
 
 group :development do
-	gem 'web-console', '~> 2.0'
+	gem 'web-console'
 	gem 'rubocop'
 end
 
