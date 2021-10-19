@@ -60,7 +60,7 @@ class TargetsControllerTest < ActionController::TestCase
         } }
       end
 
-      assert_redirected_to target_path(assigns(:target))
+      assert_redirected_to target_path(Target.last)
     end
 
     test 'should show target' do
@@ -89,7 +89,7 @@ class TargetsControllerTest < ActionController::TestCase
           sortal_predicates: @target.sortal_predicates.join('/t')
         }
       }
-      assert_redirected_to target_path(assigns(:target))
+      assert_redirected_to target_path(Target.last)
     end
 
     test 'should destroy target' do
