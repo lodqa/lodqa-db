@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.10'
 
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.6'
 gem 'devise'
 gem 'friendly_id'
 gem 'wice_grid', '~> 3.5'
