@@ -22,6 +22,7 @@ group :development, :test do
 	gem 'test-unit'
 	gem 'test-unit-rr'
 	gem 'minitest-sub_test_case'
+	gem 'rails-controller-testing'
 end
 
 # Use unicorn as the app server
