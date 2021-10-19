@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LexicalIndexJob < ActiveJob::Base
+class LexicalIndexJob < ApplicationJob
   queue_as :default
 
   def perform target

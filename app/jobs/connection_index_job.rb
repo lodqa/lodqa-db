@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ConnectionIndexJob < ActiveJob::Base
+class ConnectionIndexJob < ApplicationJob
   queue_as :default
 
   def perform target

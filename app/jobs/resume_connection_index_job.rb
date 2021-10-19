@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ResumeConnectionIndexJob < ActiveJob::Base
+class ResumeConnectionIndexJob < ApplicationJob
   queue_as :default
 
   def perform target
