@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.11.3'
+gem 'rails', '5.0.7.2'
 
 gem 'sqlite3', '~> 1.3.6'
 gem 'devise'
 gem 'friendly_id'
 gem 'wice_grid'
 gem 'font-awesome-sass',  '~> 4.3'
-gem 'facebox-rails'
+gem 'facebox-rails', github: 'KishiKyousuke/facebox-rails'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.0.3'
