@@ -2,38 +2,42 @@
 
 require 'test_helper'
 
-class TargetsControllerTest < ActionController::TestCase
-  include Devise::Test::ControllerHelpers
+class TargetsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
 
   setup do
     @target = targets(:one)
   end
 
   sub_test_case 'not logged in' do
+    setup do
+      sign_out @target.user
+    end
+
     test 'should get names of public targets' do
-      get :names, format: :json
+      get target_url(@target), params: { format: :json }
       assert_response :success
-      assert_equal JSON.parse(response.body).first, 'one'
+      assert_equal JSON.parse(response.body)["name"], 'one'
     end
 
     test 'should get index' do
-      get :index, params: {}
+      get targets_url, params: {}
       assert_response :success
       assert_not_nil assigns(:targets_grid)
     end
 
     test 'should be requested login when get new' do
-      get :new, params: {}
+      get new_target_url, params: {}
       assert_response :redirect
     end
 
     test 'should be requested login when get edit' do
-      get :edit, params: { id: @target }
+      get edit_target_url(@target), params: {}
       assert_response :redirect
     end
 
     test 'should be requested login when get destroy' do
-      get :destroy, params: { id: @target }
+      delete target_url(@target), params: {}
       assert_response :redirect
     end
   end
@@ -44,13 +48,13 @@ class TargetsControllerTest < ActionController::TestCase
     end
 
     test 'should get new' do
-      get :new, params: {}
+      get new_target_url, params: {}
       assert_response :success
     end
 
     test 'should create target' do
       assert_difference('Target.count') do
-        post :create, params: { target: {
+        post targets_url, params: { target: {
           name: 'tree',
           endpoint_url: 'http://example.com',
           dictionary_url: 'http://example.com',
@@ -64,18 +68,17 @@ class TargetsControllerTest < ActionController::TestCase
     end
 
     test 'should show target' do
-      get :show, params: { id: @target }
+      get target_url(@target), params: { }
       assert_response :success
     end
 
     test 'should get edit' do
-      get :edit, params: { id: @target }
+      get edit_target_url(@target), params: {}
       assert_response :success
     end
 
     test 'should update target' do
-      put :update, params: {
-        id: @target,
+      put target_url(@target), params: {
         target: {
           description: @target.description,
           dictionary_url: @target.dictionary_url,
@@ -94,7 +97,7 @@ class TargetsControllerTest < ActionController::TestCase
 
     test 'should destroy target' do
       assert_difference('Target.count', -1) do
-        delete :destroy, params: { id: @target }
+        delete target_url(@target), params: {}
       end
 
       assert_redirected_to targets_path
