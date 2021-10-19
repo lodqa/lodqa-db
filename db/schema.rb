@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -29,24 +28,21 @@ ActiveRecord::Schema.define(version: 20181205045544) do
     t.string   "object",      limit: 255, null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.index ["target_name", "subject", "object"], name: "index_connections_on_target_name_and_subject_and_object", unique: true
   end
-
-  add_index "connections", ["target_name", "subject", "object"], name: "index_connections_on_target_name_and_subject_and_object", unique: true
 
   create_table "klasses", force: :cascade do |t|
     t.string "target_name", limit: 40,  null: false
     t.string "url",         limit: 255, null: false
+    t.index ["target_name", "url"], name: "index_klasses_on_target_name_and_url", unique: true
   end
-
-  add_index "klasses", ["target_name", "url"], name: "index_klasses_on_target_name_and_url", unique: true
 
   create_table "labels", force: :cascade do |t|
     t.string "target_name", limit: 40,  null: false
     t.string "url",         limit: 255, null: false
     t.string "label",       limit: 255, null: false
+    t.index ["target_name", "url", "label"], name: "index_labels_on_target_name_and_url_and_label", unique: true
   end
-
-  add_index "labels", ["target_name", "url", "label"], name: "index_labels_on_target_name_and_url_and_label", unique: true
 
   create_table "lexical_index_requests", force: :cascade do |t|
     t.string   "target_name",                   limit: 40,               null: false
@@ -54,18 +50,16 @@ ActiveRecord::Schema.define(version: 20181205045544) do
     t.string   "latest_error",                  limit: 255, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "estimated_seconds_to_complete", limit: 8
-    t.integer  "number_of_triples",             limit: 8
+    t.bigint   "estimated_seconds_to_complete"
+    t.bigint   "number_of_triples"
+    t.index ["target_name"], name: "index_jobs_on_target_name_and_job_name", unique: true
   end
-
-  add_index "lexical_index_requests", ["target_name"], name: "index_jobs_on_target_name_and_job_name", unique: true
 
   create_table "predicates", force: :cascade do |t|
     t.string "target_name", limit: 40,  null: false
     t.string "url",         limit: 255, null: false
+    t.index ["target_name", "url"], name: "index_predicates_on_target_name_and_url", unique: true
   end
-
-  add_index "predicates", ["target_name", "url"], name: "index_predicates_on_target_name_and_url", unique: true
 
   create_table "targets", force: :cascade do |t|
     t.string   "name"
@@ -84,9 +78,8 @@ ActiveRecord::Schema.define(version: 20181205045544) do
     t.string   "home"
     t.boolean  "publicity"
     t.string   "pred_dictionary_url"
+    t.index ["user_id"], name: "index_targets_on_user_id"
   end
-
-  add_index "targets", ["user_id"], name: "index_targets_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -103,10 +96,9 @@ ActiveRecord::Schema.define(version: 20181205045544) do
     t.datetime "updated_at"
     t.boolean  "root",                   default: false
     t.string   "username"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end
