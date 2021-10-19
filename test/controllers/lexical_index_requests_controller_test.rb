@@ -37,12 +37,12 @@ class LexicalIndexRequestsControllerTest < ActionController::TestCase
     sub_test_case 'create a request' do
       test 'create a request of my target' do
         stub(LexicalIndexJob).perform_later
-        post :create, target_id: @one.name
+        post :create, params: { target_id: @one.name }
         assert_response :redirect
       end
 
       test 'can not create requests of targets other than yourself' do
-        post :create, target_id: @two.name
+        post :create, params: { target_id: @two.name }
         assert_response :forbidden
       end
 
@@ -81,17 +81,17 @@ class LexicalIndexRequestsControllerTest < ActionController::TestCase
       end
 
       test 'delete an existing request' do
-        post :destroy, target_id: @one.name
+        post :destroy, params: { target_id: @one.name }
         assert_response :redirect
       end
 
       test 'can not delete a request of targets other than yourself' do
-        post :destroy, target_id: @two.name
+        post :destroy, params: { target_id: @two.name }
         assert_response :forbidden
       end
 
       test 'can not delete not existing request' do
-        post :destroy, target_id: targets(:one_second).name
+        post :destroy, params: { target_id: targets(:one_second).name }
         assert_response :not_found
       end
     end

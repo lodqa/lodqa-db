@@ -28,12 +28,12 @@ class TargetsControllerTest < ActionController::TestCase
     end
 
     test 'should be requested login when get edit' do
-      get :edit, id: @target
+      get :edit, params: { id: @target }
       assert_response :redirect
     end
 
     test 'should be requested login when get destroy' do
-      get :destroy, id: @target
+      get :destroy, params: { id: @target }
       assert_response :redirect
     end
   end
@@ -50,14 +50,14 @@ class TargetsControllerTest < ActionController::TestCase
 
     test 'should create target' do
       assert_difference('Target.count') do
-        post :create, target: {
+        post :create, params: { target: {
           name: 'tree',
           endpoint_url: 'http://example.com',
           dictionary_url: 'http://example.com',
           sample_queries: 'MyText',
           sortal_predicates: 'MyText',
           ignore_predicates: 'MyText'
-        }
+        } }
       end
 
       assert_redirected_to target_path(assigns(:target))
@@ -91,7 +91,7 @@ class TargetsControllerTest < ActionController::TestCase
 
     test 'should destroy target' do
       assert_difference('Target.count', -1) do
-        delete :destroy, id: @target
+        delete :destroy, params: { id: @target }
       end
 
       assert_redirected_to targets_path
