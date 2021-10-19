@@ -8,7 +8,7 @@
 user = User.create! email: "test.user@loqda.org",
                     root: false,
                     username: "test user",
-                    password: "password"
+                    password: "lodqalodqa"
 
 Target.create! name: "Test target",
                description: "This is a example target for test.",
