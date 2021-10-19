@@ -218,7 +218,7 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn
   web-console
-  wice_grid (~> 3.5)
+  wice_grid
 
 BUNDLED WITH
    1.17.3
