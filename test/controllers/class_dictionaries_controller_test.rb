@@ -9,7 +9,7 @@ class ClassDictionariesControllerTest < ActionController::TestCase
 
   sub_test_case 'not logged in' do
     test 'Users who are not logged in can not get a dictionary' do
-      get :show, target_id: targets(:one).name, format: :csv
+      get :show, params: { target_id: targets(:one).name, format: :csv }
       assert_response :forbidden
     end
   end
@@ -20,18 +20,18 @@ class ClassDictionariesControllerTest < ActionController::TestCase
     end
 
     test 'get the dictionary' do
-      response = get :show, target_id: targets(:one).name, format: :csv
+      response = get :show, params: { target_id: targets(:one).name, format: :csv }
       assert_response :success
       assert_equal ['klass', 'http://example.com/klass'], response.body.split("\t")
     end
 
     test 'can not get the dictionary of targets other than yourself' do
-      get :show, target_id: targets(:two).name, format: :csv
+      get :show, params: { target_id: targets(:two).name, format: :csv }
       assert_response :forbidden
     end
 
     test 'can not get the dictionary of targets that do not exist' do
-      assert_raises(ActiveRecord::RecordNotFound) { get :show, target_id: 'aaaa', format: :csv }
+      assert_raises(ActiveRecord::RecordNotFound) { get :show, params: { target_id: 'aaaa', format: :csv } }
     end
   end
 end

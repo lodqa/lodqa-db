@@ -14,17 +14,17 @@ class LexicalIndexRequestsControllerTest < ActionController::TestCase
 
   sub_test_case 'not logged in' do
     test 'A user who is not logged in is requested to log in1' do
-      post :create, target_id: @one.name
+      post :create, params: { target_id: @one.name }
       assert_response :redirect
     end
 
     test 'Users who are not logged in can not resume' do
-      post :update, target_id: @one.name
+      post :update, params: { target_id: @one.name }
       assert_response :forbidden
     end
 
     test 'Users who are not logged in can not delete' do
-      post :destroy, target_id: @one.name
+      post :destroy, params: { target_id: @one.name }
       assert_response :forbidden
     end
   end
@@ -47,7 +47,7 @@ class LexicalIndexRequestsControllerTest < ActionController::TestCase
       end
 
       test 'can not create requests for targets that do not exist' do
-        assert_raises(ActiveRecord::RecordNotFound) { post :create, target_id: 'aaaa' }
+        assert_raises(ActiveRecord::RecordNotFound) { post :create, params: { target_id: 'aaaa' } }
       end
     end
 
@@ -59,17 +59,17 @@ class LexicalIndexRequestsControllerTest < ActionController::TestCase
 
       test 'resume a request of my target' do
         stub(ResumeLexicalIndexJob).perform_later
-        post :update, target_id: @one.name
+        post :update, params: { target_id: @one.name }
         assert_response :redirect
       end
 
       test 'can not resume requests of targets other than yourself' do
-        post :update, target_id: @two.name
+        post :update, params: { target_id: @two.name }
         assert_response :forbidden
       end
 
       test 'can not resume requests for targets that do not exist' do
-        assert_raises(ActiveRecord::RecordNotFound) { post :update, target_id: 'aaaa' }
+        assert_raises(ActiveRecord::RecordNotFound) { post :update, params: { target_id: 'aaaa' } }
       end
     end
 

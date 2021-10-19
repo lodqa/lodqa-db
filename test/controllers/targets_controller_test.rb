@@ -17,13 +17,13 @@ class TargetsControllerTest < ActionController::TestCase
     end
 
     test 'should get index' do
-      get :index
+      get :index, params: {}
       assert_response :success
       assert_not_nil assigns(:targets_grid)
     end
 
     test 'should be requested login when get new' do
-      get :new
+      get :new, params: {}
       assert_response :redirect
     end
 
@@ -44,7 +44,7 @@ class TargetsControllerTest < ActionController::TestCase
     end
 
     test 'should get new' do
-      get :new
+      get :new, params: {}
       assert_response :success
     end
 
@@ -64,27 +64,30 @@ class TargetsControllerTest < ActionController::TestCase
     end
 
     test 'should show target' do
-      get :show, id: @target
+      get :show, params: { id: @target }
       assert_response :success
     end
 
     test 'should get edit' do
-      get :edit, id: @target
+      get :edit, params: { id: @target }
       assert_response :success
     end
 
     test 'should update target' do
-      put :update, id: @target, target: {
-        description: @target.description,
-        dictionary_url: @target.dictionary_url,
-        endpoint_url: @target.endpoint_url,
-        graph_uri: @target.graph_uri,
-        ignore_predicates: @target.ignore_predicates.join('/t'),
-        max_hop: @target.max_hop,
-        name: @target.name,
-        parser_url: @target.parser_url,
-        sample_queries: @target.sample_queries.join('/t'),
-        sortal_predicates: @target.sortal_predicates.join('/t')
+      put :update, params: {
+        id: @target,
+        target: {
+          description: @target.description,
+          dictionary_url: @target.dictionary_url,
+          endpoint_url: @target.endpoint_url,
+          graph_uri: @target.graph_uri,
+          ignore_predicates: @target.ignore_predicates.join('/t'),
+          max_hop: @target.max_hop,
+          name: @target.name,
+          parser_url: @target.parser_url,
+          sample_queries: @target.sample_queries.join('/t'),
+          sortal_predicates: @target.sortal_predicates.join('/t')
+        }
       }
       assert_redirected_to target_path(assigns(:target))
     end
