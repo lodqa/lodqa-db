@@ -24,4 +24,4 @@ jobs:
       # Add or Replace any other Linters here
       - name: Run linters
         run: |
-          bin/rubocop --parallel
+          bundle exec rubocop --parallel
