@@ -1,3 +1,8 @@
+Layout/LineLength:
+  Exclude:
+    - test/**/*_test.rb
+  Max: 219
+
 Metrics/AbcSize:
   Max: 41
 
@@ -18,11 +23,6 @@ Metrics/MethodLength:
 
 Metrics/ModuleLength:
   Max: 117
-
-Metrics/LineLength:
-  Exclude:
-    - test/**/*_test.rb
-  Max: 219
 
 Metrics/PerceivedComplexity:
   Max: 9
