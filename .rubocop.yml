@@ -50,4 +50,5 @@ AllCops:
     - Gemfile
     - Rakefile
     - bin/*
+    - vendor/bundler/**/*
   NewCops: enable
