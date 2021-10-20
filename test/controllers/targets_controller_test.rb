@@ -17,7 +17,7 @@ class TargetsControllerTest < ActionDispatch::IntegrationTest
     test 'should get names of public targets' do
       get target_url(@target), params: { format: :json }
       assert_response :success
-      assert_equal JSON.parse(response.body)["name"], 'one'
+      assert_equal JSON.parse(response.body)['name'], 'one'
     end
 
     test 'should get index' do
@@ -68,7 +68,7 @@ class TargetsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should show target' do
-      get target_url(@target), params: { }
+      get target_url(@target), params: {}
       assert_response :success
     end
 

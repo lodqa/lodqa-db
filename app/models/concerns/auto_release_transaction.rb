@@ -5,7 +5,7 @@ module AutoReleaseTransaction
   extend ActiveSupport::Concern
 
   included do
-    class <<self
+    class << self
       alias_method :orig_transaction, :transaction
       def transaction options = {}, &block
         # Disable SQL log to reduce connection use time

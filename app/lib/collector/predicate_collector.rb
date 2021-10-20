@@ -2,7 +2,7 @@
 
 # frozen_string_literal: true
 
-require_relative 'collector.rb'
+require_relative 'collector'
 
 module Collector
   module PredicateCollector

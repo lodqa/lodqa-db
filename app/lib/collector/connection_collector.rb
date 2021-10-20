@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'collector.rb'
+require_relative 'collector'
 
 # Module to collect labels
 module Collector
