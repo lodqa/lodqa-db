@@ -49,3 +49,5 @@ AllCops:
     - test/test_helper.rb
     - Gemfile
     - Rakefile
+    - bin/*
+  NewCops: enable
