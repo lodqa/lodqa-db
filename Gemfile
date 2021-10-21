@@ -25,5 +25,4 @@ group :development, :test do
 	gem 'minitest-sub_test_case'
 end
 
-# Use unicorn as the app server
-gem 'unicorn'
+gem 'puma'
