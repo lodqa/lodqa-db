@@ -10,7 +10,7 @@ gem 'font-awesome-sass'
 gem 'facebox-rails', github: 'KishiKyousuke/facebox-rails'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'sass-rails'
-gem 'uglifier', '>= 1.0.3'
+gem 'uglifier'
 gem 'jquery-rails'
 
 group :development do
