@@ -16,6 +16,7 @@ gem 'jquery-rails'
 group :development do
 	gem 'web-console'
 	gem 'rubocop'
+	gem 'listen'
 end
 
 group :development, :test do
