@@ -23,7 +23,7 @@ class TargetsControllerTest < ActionDispatch::IntegrationTest
     test 'should get index' do
       get targets_url, params: {}
       assert_response :success
-      assert_not_nil assigns(:targets_grid)
+      assert_match @target.name, @response.body
     end
 
     test 'should be requested login when get new' do
