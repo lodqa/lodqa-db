@@ -69,8 +69,8 @@ GEM
     erubis (2.7.0)
     execjs (2.8.1)
     ffi (1.15.4)
-    font-awesome-sass (4.7.0)
-      sass (>= 3.2)
+    font-awesome-sass (5.15.1)
+      sassc (>= 1.11)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     globalid (0.5.2)
@@ -113,7 +113,7 @@ GEM
     parser (3.0.2.0)
       ast (~> 2.4.1)
     power_assert (2.0.1)
-    racc (1.5.2)
+    racc (1.6.0)
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
@@ -145,9 +145,6 @@ GEM
     rainbow (3.0.0)
     raindrops (0.19.2)
     rake (13.0.6)
-    rb-fsevent (0.11.0)
-    rb-inotify (0.10.1)
-      ffi (~> 1.0)
     regexp_parser (2.1.1)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -166,11 +163,6 @@ GEM
     rubocop-ast (1.12.0)
       parser (>= 3.0.1.1)
     ruby-progressbar (1.11.0)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -226,7 +218,7 @@ PLATFORMS
 DEPENDENCIES
   devise
   facebox-rails!
-  font-awesome-sass (~> 4.3)
+  font-awesome-sass
   friendly_id
   jquery-rails
   minitest (= 5.10.1)
