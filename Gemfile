@@ -22,7 +22,6 @@ group :development, :test do
 	gem 'test-unit'
 	gem 'test-unit-rr'
 	gem 'minitest-sub_test_case'
-	gem 'rails-controller-testing'
 	gem 'minitest', '5.10.1'
 end
 
