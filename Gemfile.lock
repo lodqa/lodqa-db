@@ -54,6 +54,8 @@ GEM
     ast (2.4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
+    bootsnap (1.9.1)
+      msgpack (~> 1.0)
     builder (3.2.4)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
@@ -111,6 +113,7 @@ GEM
     mini_portile2 (2.6.1)
     minitest (5.14.4)
     minitest-sub_test_case (0.1.2)
+    msgpack (1.4.2)
     nio4r (2.5.8)
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
@@ -225,6 +228,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootsnap (>= 1.1.0)
   devise
   facebox-rails!
   font-awesome-sass
