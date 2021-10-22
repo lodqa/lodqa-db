@@ -12,18 +12,9 @@ module LodqaDb
     config.load_defaults 5.1
 
     # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-
-    # Ensure Rack::Cors to run before Warden::Manager used by Devise
-    config.middleware.insert_before Warden::Manager, Rack::Cors do
-        allow do
-            origins '*'
-            resource '*',
-            :headers => :any,
-            :methods => [:get, :options]
-        end
-    end
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
 
     config.active_job.queue_adapter = :async
     config.autoload_paths += %W(#{config.root}/app/jobs/concerns)
