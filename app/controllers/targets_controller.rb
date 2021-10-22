@@ -90,7 +90,7 @@ class TargetsController < ApplicationController
     @target = Target.find_by!(name: params[:id])
 
     respond_to do |format|
-      if @target.update_attributes(target_params)
+      if @target.update(target_params)
         format.html { redirect_to @target, notice: 'Target was successfully updated.' }
         format.json { head :no_content }
       else
