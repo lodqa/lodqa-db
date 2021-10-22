@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateConnections < ActiveRecord::Migration
+class CreateConnections < ActiveRecord::Migration[4.2]
   def change
     create_table :connections do |t|
       t.string :target_name, limit: 40, null: false

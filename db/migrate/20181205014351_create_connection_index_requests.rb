@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateConnectionIndexRequests < ActiveRecord::Migration
+class CreateConnectionIndexRequests < ActiveRecord::Migration[4.2]
   def change
     create_table :connection_index_requests do |t|
       t.string :target_name, limit: 40, null: false

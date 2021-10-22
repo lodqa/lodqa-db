@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateKlasses < ActiveRecord::Migration
+class CreateKlasses < ActiveRecord::Migration[4.2]
   def change
     create_table :klasses do |t|
       t.string :target_name, limit: 40, null: false
