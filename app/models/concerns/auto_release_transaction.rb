@@ -12,7 +12,7 @@ module AutoReleaseTransaction
         orig_logger = ActiveRecord::Base.logger
         begin
           ActiveRecord::Base.logger = nil
-          orig_transaction(options, &block)
+          orig_transaction(**options, &block)
         ensure
           ActiveRecord::Base.logger = orig_logger
         end
