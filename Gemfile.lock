@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/KishiKyousuke/facebox-rails.git
+  remote: https://github.com/KishiKyousuke/facebox-rails.git
   revision: 0bc19730aa119ab018bcaad5ceb28a74fe14a2d9
   specs:
     facebox-rails (0.2.0)
@@ -7,7 +7,7 @@ GIT
       thor (>= 0.14)
 
 GIT
-  remote: git://github.com/kreintjes/wice_grid.git
+  remote: https://github.com/kreintjes/wice_grid.git
   revision: 26aff4d3cb37197ea7c8ac2f1d481a5d975a3de1
   branch: fix/all
   specs:
@@ -274,4 +274,4 @@ DEPENDENCIES
   wice_grid!
 
 BUNDLED WITH
-   1.17.3
+   2.2.29
