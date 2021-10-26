@@ -34,7 +34,6 @@ Style/MethodDefParentheses:
   EnforcedStyle: require_no_parentheses
 
 AllCops:
-  TargetRubyVersion: 2.5
   Exclude:
     - app/lib/active_job/queue_adapters/async_adapter.rb
     - config.ru
