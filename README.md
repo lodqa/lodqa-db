@@ -20,7 +20,7 @@ bin/rails s
 To run tests:
 
 ```shell
-bin/rails tests
+bin/rails test
 ```
 
 To run the linter:
