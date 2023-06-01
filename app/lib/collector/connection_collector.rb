@@ -11,7 +11,7 @@ module Collector
       private
 
       def sparql_to_count _options
-        <<~"SPARQL"
+        <<~SPARQL
           SELECT (count(*) as ?count) {
             SELECT distinct ?s ?o
             WHERE {
