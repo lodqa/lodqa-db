@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.1.4'
+gem 'rails', '~> 7.0.5'
 
 gem 'sqlite3'
 gem 'devise'
 gem 'friendly_id'
-gem 'wice_grid', github: 'kreintjes/wice_grid', branch: 'fix/all'
+gem 'wice_grid', '~> 4.1', github: 'ledsun/wice_grid', branch: 'rails_7'
 gem 'font-awesome-sass'
 gem 'facebox-rails', github: 'KishiKyousuke/facebox-rails'
 gem 'rack-cors', :require => 'rack/cors'
