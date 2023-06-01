@@ -15,17 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Ruby and install gems
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
         with:
           bundler-cache: true
 
       - name: Run linters
-        run: |
-          bundle exec rubocop --parallel
+        run: bundle exec rubocop
 
       - name: Run tests
-        run: |
-          bin/rails test
+        run: bin/rails test
