@@ -15,6 +15,7 @@ gem 'jquery-rails'
 
 group :development do
 	gem 'rubocop'
+  gem 'rubocop-rails'
 end
 
 group :development, :test do

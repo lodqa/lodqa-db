@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, length: { minimum: 5, maximum: 20 }, uniqueness: true
-  validates_format_of :username, with: /\A[a-zA-Z0-9][a-zA-Z0-9 _-]+\z/i
+  validates :username, format: { with: /\A[a-zA-Z0-9][a-zA-Z0-9 _-]+\z/i }
 
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup

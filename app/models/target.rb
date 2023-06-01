@@ -15,11 +15,10 @@ class Target < ApplicationRecord
   serialize :sample_queries, Array
 
   validates :name, presence: true
-  validates_format_of :name, with: /\A[a-zA-Z0-9][a-zA-Z0-9 _-]+\z/i
-  validates :user, presence: true
+  validates :name, format: { with: /\A[a-zA-Z0-9][a-zA-Z0-9 _-]+\z/i }
   validates :endpoint_url, presence: true
   validates :dictionary_url, presence: true
-  validates_uniqueness_of :name
+  validates :name, uniqueness: true
 
   def editable? current_user
     if current_user.present?

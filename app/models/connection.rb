@@ -19,7 +19,7 @@ class Connection < ApplicationRecord
 
     # rubocop:disable Metrics/MethodLength
     def breadth_first_traversal target_name
-      sql = <<~SQL
+      sql = <<~SQL.squish
         SELECT
           L.SUBJECT,
           R.OBJECT

@@ -35,7 +35,7 @@ module Collector
         query: sparql,
         timeout: 60_000
       }
-      parameters['default-graph-uri'] = @graph_uri unless @graph_uri.nil? || @graph_uri.empty?
+      parameters['default-graph-uri'] = @graph_uri if @graph_uri.present?
       URI.encode_www_form parameters
     end
 

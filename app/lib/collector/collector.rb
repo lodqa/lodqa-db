@@ -18,7 +18,7 @@ module Collector
 
     def get_total endpoint, total_count, options
       total_count ||= count endpoint, options
-      Rails.logger.debug "total #{total_count}"
+      Rails.logger.debug { "total #{total_count}" }
 
       total_count
     end
@@ -27,7 +27,7 @@ module Collector
       offset_size = DEFAULT_OFFSET_SIZE
       done_count = initial_offset
       loop do
-        start_at = Time.now
+        start_at = Time.zone.now
 
         results = get_part endpoint, done_count, offset_size, options
 
@@ -38,7 +38,7 @@ module Collector
 
         # Reject nil from results
         # If you specify "http://example.com" for graph-uri and get the predicate from the QALD-BioMed, the empty JSON will be returned.
-        yield results.compact, Statistics.new(type, { start_at:, end_at: Time.now }, total_count, done_count, results.count)
+        yield results.compact, Statistics.new(type, { start_at:, end_at: Time.zone.now }, total_count, done_count, results.count)
 
         break if done_count >= total_count
       end

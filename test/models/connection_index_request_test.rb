@@ -128,7 +128,7 @@ class ConnectionIndexRequestTest < ActiveSupport::TestCase
     sub_test_case 'statistics' do
       test 'the estimated_seconds_to_complete is set after the statistics is set' do
         request = connection_index_requests(:running)
-        request.statistics = Collector::Statistics.new 'type', { start_at: Time.now }, 100, 10, 10
+        request.statistics = Collector::Statistics.new 'type', { start_at: Time.zone.now }, 100, 10, 10
         assert_not_nil request.estimated_seconds_to_complete
       end
 

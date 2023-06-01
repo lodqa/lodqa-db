@@ -51,3 +51,30 @@ AllCops:
     - bin/*
     - vendor/bundle/**/*
   NewCops: enable
+
+require:
+  - rubocop-rails
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Rails/TransactionExitStatement:
+  Enabled: false
+
+Rails/ThreeStateBooleanColumn:
+  Enabled: false
+
+Rails/CreateTableWithTimestamps:
+  Enabled: false
+
+Rails/ReversibleMigration:
+  Enabled: false

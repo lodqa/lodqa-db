@@ -11,7 +11,7 @@ module Collector
       @acquired_count = acquired_count
     end
 
-    def calc_remaining_time now = Time.now
+    def calc_remaining_time now = Time.zone.now
       unit_time = now - @start_at
       return [unit_time, 0] if @acquired_count.zero?
 
@@ -22,7 +22,7 @@ module Collector
 
     def to_s
       unit = @type.pluralize
-      now = Time.now
+      now = Time.zone.now
       unit_time, to_complete = calc_remaining_time now
       [
         "#{@done_count} #{unit} were collected.",
