@@ -8,8 +8,8 @@ class Predicate < ApplicationRecord
   def self.append target_name, predicates
     transaction do
       predicates.each do |url|
-        where(target_name: target_name,
-              url: url)
+        where(target_name:,
+              url:)
           .first_or_create
       end
     end

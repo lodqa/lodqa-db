@@ -18,7 +18,7 @@ class TargetsController < ApplicationController
 
     @targets_grid = initialize_grid(
       Target,
-      conditions: conditions,
+      conditions:,
       include: :user
     )
 

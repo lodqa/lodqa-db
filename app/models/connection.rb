@@ -9,9 +9,9 @@ class Connection < ApplicationRecord
     def append target_name, connections
       transaction do
         connections.each do |subject, object|
-          where(target_name: target_name,
-                subject: subject,
-                object: object)
+          where(target_name:,
+                subject:,
+                object:)
             .first_or_create
         end
       end

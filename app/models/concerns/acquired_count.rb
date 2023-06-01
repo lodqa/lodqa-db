@@ -5,7 +5,7 @@ module AcquiredCount
 
   class_methods do
     def acquired_count target_name
-      transaction { where(target_name: target_name).count }
+      transaction { where(target_name:).count }
     end
   end
 end

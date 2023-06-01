@@ -8,8 +8,8 @@ class Klass < ApplicationRecord
   def self.append target_name, klasses
     transaction do
       klasses.each do |url|
-        where(target_name: target_name,
-              url: url)
+        where(target_name:,
+              url:)
           .first_or_create
       end
     end

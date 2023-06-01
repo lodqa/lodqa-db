@@ -7,12 +7,12 @@ module AutoReleaseTransaction
   included do
     class << self
       alias_method :orig_transaction, :transaction
-      def transaction options = {}, &block
+      def transaction(options = {}, &)
         # Disable SQL log to reduce connection use time
         orig_logger = ActiveRecord::Base.logger
         begin
           ActiveRecord::Base.logger = nil
-          orig_transaction(**options, &block)
+          orig_transaction(**options, &)
         ensure
           ActiveRecord::Base.logger = orig_logger
         end

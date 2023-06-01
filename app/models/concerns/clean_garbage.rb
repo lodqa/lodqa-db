@@ -5,7 +5,7 @@ module CleanGarbage
 
   class_methods do
     def clean_gabage target_name
-      transaction { where(target_name: target_name).delete_all }
+      transaction { where(target_name:).delete_all }
     end
   end
 end

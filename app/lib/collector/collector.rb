@@ -38,7 +38,7 @@ module Collector
 
         # Reject nil from results
         # If you specify "http://example.com" for graph-uri and get the predicate from the QALD-BioMed, the empty JSON will be returned.
-        yield results.compact, Statistics.new(type, { start_at: start_at, end_at: Time.now }, total_count, done_count, results.count)
+        yield results.compact, Statistics.new(type, { start_at:, end_at: Time.now }, total_count, done_count, results.count)
 
         break if done_count >= total_count
       end
