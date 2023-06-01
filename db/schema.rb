@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_05_045544) do
+ActiveRecord::Schema[6.1].define(version: 2018_12_05_045544) do
 
   create_table "connection_index_requests", force: :cascade do |t|
     t.string "target_name", limit: 40, null: false
